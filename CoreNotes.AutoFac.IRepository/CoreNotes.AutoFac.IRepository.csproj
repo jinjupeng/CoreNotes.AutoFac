@@ -1,8 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>CoreNotes.AutoFac.IRepository</RootNamespace>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreNotes.AutoFac.Model\CoreNotes.AutoFac.Model.csproj" />
+  </ItemGroup>
 
 </Project>

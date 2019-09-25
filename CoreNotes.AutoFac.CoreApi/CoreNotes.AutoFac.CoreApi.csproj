@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoreNotes.AutoFac.IService\CoreNotes.AutoFac.IService.csproj" />
+    <ProjectReference Include="..\CoreNotes.AutoFac.Repository\CoreNotes.AutoFac.Repository.csproj" />
+    <ProjectReference Include="..\CoreNotes.AutoFac.Service\CoreNotes.AutoFac.Service.csproj" />
   </ItemGroup>
 
 </Project>

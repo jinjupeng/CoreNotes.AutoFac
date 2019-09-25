@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreNotes.AutoFac.IRepository\CoreNotes.AutoFac.IRepository.csproj" />
+    <ProjectReference Include="..\CoreNotes.AutoFac.IService\CoreNotes.AutoFac.IService.csproj" />
+    <ProjectReference Include="..\CoreNotes.AutoFac.Repository\CoreNotes.AutoFac.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace CoreNotes.AutoFac.CoreApi
 {
@@ -20,7 +14,10 @@ namespace CoreNotes.AutoFac.CoreApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    // 第一种：使用自带DI
                     webBuilder.UseStartup<Startup>();
+                    // 第二种：添加AutoFac作为辅助容器
+                    // 第三种：添加AutoFac接管依赖注入
                 });
     }
 }

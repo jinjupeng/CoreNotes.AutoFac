@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreNotes.AutoFac.IRepository\CoreNotes.AutoFac.IRepository.csproj" />
+    <ProjectReference Include="..\CoreNotes.AutoFac.Model\CoreNotes.AutoFac.Model.csproj" />
+  </ItemGroup>
+
 </Project>
