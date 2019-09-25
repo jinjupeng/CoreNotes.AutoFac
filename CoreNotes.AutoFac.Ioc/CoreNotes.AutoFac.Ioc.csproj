@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -9,9 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreNotes.AutoFac.Ioc\CoreNotes.AutoFac.Ioc.csproj" />
-    <ProjectReference Include="..\CoreNotes.AutoFac.IService\CoreNotes.AutoFac.IService.csproj" />
-    <ProjectReference Include="..\CoreNotes.AutoFac.Repository\CoreNotes.AutoFac.Repository.csproj" />
     <ProjectReference Include="..\CoreNotes.AutoFac.Service\CoreNotes.AutoFac.Service.csproj" />
   </ItemGroup>
 

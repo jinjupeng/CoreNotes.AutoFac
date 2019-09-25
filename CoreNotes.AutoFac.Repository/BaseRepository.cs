@@ -13,7 +13,7 @@ namespace CoreNotes.AutoFac.Repository
     {
         public virtual T Get(long id)
         {
-            //没有连接数据库，利用反射，造个假数据返回用于测试
+            // 没有连接数据库，利用反射，造个假数据返回用于测试
             T instance = Activator.CreateInstance<T>();
 
             var stuEntity = instance as StudentEntity;
