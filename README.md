@@ -42,6 +42,7 @@ https://www.cnblogs.com/wj-1314/p/8547763.html
   - [ ] AutoFac
   - [ ] AutoMapper
   - [ ] Swagger UI
+  - [ ] 单元测试
 
 ## License
 
