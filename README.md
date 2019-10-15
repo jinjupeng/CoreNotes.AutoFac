@@ -39,7 +39,7 @@ https://www.cnblogs.com/wj-1314/p/8547763.html
 
 - [ ] **开发计划**
   - [X] 微软内置DI
-  - [ ] AutoFac
+  - [X] AutoFac
   - [ ] AutoMapper
   - [ ] Swagger UI
   - [ ] 单元测试
