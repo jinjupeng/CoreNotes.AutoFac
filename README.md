@@ -30,7 +30,16 @@
 
 怎么使用，有哪些步骤哪些接口。
 
-### 注意事项
+### 项目整体架构
+
+  + CoreNotes.AutoFac
+    + CoreNotes.AutoFac.CoreApi：WebApi
+    + CoreNotes.AutoFac.Ioc：依赖注入容器
+    + CoreNotes.AutoFac.IRepository：仓储接口层
+    + CoreNotes.AutoFac.IService：服务接口层
+    + CoreNotes.AutoFac.Model：模型
+    + CoreNotes.AutoFac.Repository：实现仓储接口
+    + CoreNotes.AutoFac.Service：实现服务接口
 
 比如混淆方法等
 
