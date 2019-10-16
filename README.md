@@ -2,8 +2,7 @@
 
 -------------
 
-> 关于我，欢迎关注  
-https://www.cnblogs.com/wj-1314/p/8547763.html
+> 每天进步一点点
 
 ## 示例
 
@@ -41,8 +40,22 @@ https://www.cnblogs.com/wj-1314/p/8547763.html
   - [X] 微软内置DI
   - [X] AutoFac
   - [ ] AutoMapper
-  - [ ] Swagger UI
+  - [x] Swagger UI
+  - [ ] REST Apis
   - [ ] 单元测试
+
+## 链接
+
+[.NET Core3.0的官方教程](https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-3.0)
+
+[.NET Core无处不在的依赖注入](https://juejin.im/post/5d6736fff265da03c128abca)
+[ASP.NET Core依赖注入解读&使用Autofac替代实现](https://cloud.tencent.com/developer/article/1023209)
+
+[服务的生命周期](https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0#service-lifetimes)
+
+[.NET Core 3.0的AutoFac是实现1](https://github.com/aspnet/AspNetCore.Docs/issues/11441)
+[.NET Core 3.0的AutoFac是实现2](https://stackoverflow.com/questions/56385277/configure-autofac-in-asp-net-core-3-0-preview-5-or-higher)
+[.NET Core 3.0的AutoFac是实现3](https://stackoverflow.com/questions/37063652/autofac-module-registrations)
 
 ## License
 

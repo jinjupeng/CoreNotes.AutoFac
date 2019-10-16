@@ -7,6 +7,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
     /// 学生模块接口
     /// </summary>
     [ApiController]
+    [Route("[controller]")]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
@@ -15,10 +16,10 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             _studentService = studentService;
         }
 
-        [Route("Student/GetStuNameById")]
-        public string GetStuNameById(long id)
+        [HttpGet]
+        public ActionResult GetStuNameById(long id)
         {
-            return _studentService.GetStuName(id);
+            return Ok(_studentService.GetStuName(id));
         }
     }
 }

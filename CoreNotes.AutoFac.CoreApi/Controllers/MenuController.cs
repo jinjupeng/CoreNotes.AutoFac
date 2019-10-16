@@ -5,19 +5,20 @@ using System.Collections.Generic;
 
 namespace CoreNotes.AutoFac.CoreApi.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class MenuController : ControllerBase
     {
-        private readonly IMenuService _MenuService;
-        public MenuController(IMenuService MenuService)
+        private readonly IMenuService _menuService;
+        public MenuController(IMenuService menuService)
         {
-            _MenuService = MenuService;
+            _menuService = menuService;
         }
 
-        [Route("Menu/GetMenuTree")]
-        public List<MenuEntity> GetMenuTree()
+        [HttpGet]
+        public ActionResult<List<MenuEntity>> GetMenuTree()
         {
-            var result = _MenuService.GetMenuTree();
-            return result;
+            return _menuService.GetMenuTree();
         }
     }
 }

@@ -1,15 +1,12 @@
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using CoreNotes.AutoFac.Ioc;
-using CoreNotes.AutoFac.IRepository;
-using CoreNotes.AutoFac.IService;
-using CoreNotes.AutoFac.Repository;
-using CoreNotes.AutoFac.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using System;
 
 namespace CoreNotes.AutoFac.CoreApi
@@ -24,50 +21,31 @@ namespace CoreNotes.AutoFac.CoreApi
         public IConfiguration Configuration { get; }
         public IContainer ApplicationContainer { get; private set; }
 
-        /*
-        Transient： Transient服务在每次请求时被创建，它最好被用于轻量级无状态服务（如Repository和ApplicationService服务）
-        Scoped： Scoped 服务在每次请求时被创建，生命周期横贯整次请求；在同一个Scope内只初始化一个实例 ，可以理解为（ 每一个request级别只创建一个实例，同一个http request会在一个 scope内）
-        Singleton ：整个应用程序生命周期以内只创建一个实例 
-        https://juejin.im/post/5d6736fff265da03c128abca .net core 无处不在的依赖注入
-        https://cloud.tencent.com/developer/article/1023209   ASP.NET Core依赖注入解读&使用Autofac替代实现
 
-        .net core 中DI的核心
-        IServiceCollection 负责注册
-        // IServiceProvider 负责提供实例
-        */
-        #region 微软官方自带的DI
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-
+        // 在运行时被调用，使用该方法注册服务到容器中（使用DI注入）
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddScoped<IStudentService, StudentService>();
-            // services.AddScoped<IStudentRepository, StudentRepository>();
+            /* 使用微软内置的DI
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            */
             services.AddControllers();
+
+            #region Swagger UI
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1.1.0",
+                    Title = "CoreNotes.Autofac.CoreApi",
+                    Description = "Api Server",
+                    Contact = new OpenApiContact { Name = "jinjupeng", Email = "2365697576@qq.com", Url = new Uri("https://github.com/jinjupeng") }
+                });
+            });
+            #endregion
         }
 
-
-        #endregion
-
-        #region AutoFac的实现
-        /*
-         * 这种写法在.net 3.0会报错：ConfigureServices returning an System.IServiceProvider isn't supported.
-         * https://github.com/aspnet/AspNetCore.Docs/issues/11441
-         * https://stackoverflow.com/questions/56385277/configure-autofac-in-asp-net-core-3-0-preview-5-or-higher
-         * https://stackoverflow.com/questions/37063652/autofac-module-registrations
-                public IServiceProvider ConfigureServices(IServiceCollection services)
-                {
-                    var builder = new ContainerBuilder();
-
-                    // 注意以下写法
-                    builder.RegisterType<StudentService>().As<IStudentService>();
-                    builder.RegisterType<StudentRepository>().As<IStudentRepository>();
-
-                    builder.Populate(services);
-                    this.ApplicationContainer = builder.Build();
-
-                    return new AutofacServiceProvider(this.ApplicationContainer);
-                }*/
+        #region AutoFac的DI实现
 
         // This is the default if you don't have an environment specific method.
         public void ConfigureContainer(ContainerBuilder builder)
@@ -77,15 +55,17 @@ namespace CoreNotes.AutoFac.CoreApi
         }
         #endregion
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // 该方法在运行时被调用，通过该方法配置HTTP请求管道
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // 中间件
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseRouting();
+            app.UseStaticFiles(); // 访问静态文件中间件
 
             app.UseAuthorization();
 
@@ -93,6 +73,17 @@ namespace CoreNotes.AutoFac.CoreApi
             {
                 endpoints.MapControllers();
             });
+            #region Swagger
+            // 启动中间件服务生成Swagger作为JSON的终结点
+            app.UseSwagger();
+            // 启用中间件服务对swagger ui，指定Swagger JSON终结点
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
+                // http://localhost:<port>/
+                c.RoutePrefix = string.Empty;
+            });
+            #endregion
         }
     }
 }
