@@ -1,0 +1,81 @@
+"2019-11-04 19:26:05.596 +08:00 [INF] Starting web host
+")"2019-11-04 19:26:06.829 +08:00 [INF] User profile is available. Using 'C:\Users\宏达卓阳\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+")"2019-11-04 19:26:07.200 +08:00 [INF] Now listening on: http://localhost:5000
+")"2019-11-04 19:26:07.202 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+")"2019-11-04 19:26:07.203 +08:00 [INF] Hosting environment: Development
+")"2019-11-04 19:26:07.204 +08:00 [INF] Content root path: D:\Git_Repo\CoreNotes\CoreNotes.AutoFac\CoreNotes.AutoFac\CoreNotes.AutoFac.CoreApi
+")"2019-11-04 19:26:07.998 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Student  
+")"2019-11-04 19:26:08.057 +08:00 [INF] Executing endpoint 'CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi)'
+")"2019-11-04 19:26:08.126 +08:00 [INF] Route matched with {action = "GetStuNameById", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult GetStuNameById() on controller CoreNotes.AutoFac.CoreApi.Controllers.StudentController (CoreNotes.AutoFac.CoreApi).
+")"2019-11-04 19:26:10.457 +08:00 [ERR] 出错了 |    at CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById() in D:\Git_Repo\CoreNotes\CoreNotes.AutoFac\CoreNotes.AutoFac\CoreNotes.AutoFac.CoreApi\Controllers\StudentController.cs:line 24
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted) | 
+")"2019-11-04 19:26:10.550 +08:00 [INF] Executing ContentResult with HTTP Response ContentType of text/json;charset=utf-8;
+")"2019-11-04 19:26:10.565 +08:00 [INF] Executed action CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi) in 2432.4589ms
+")"2019-11-04 19:26:10.572 +08:00 [INF] Executed endpoint 'CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi)'
+")"2019-11-04 19:26:10.575 +08:00 [INF] Request finished in 2582.3309ms 500 text/json;charset=utf-8;
+")"2019-11-04 19:26:51.357 +08:00 [INF] Starting web host
+")"2019-11-04 19:26:52.330 +08:00 [INF] User profile is available. Using 'C:\Users\宏达卓阳\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+")"2019-11-04 19:26:52.691 +08:00 [INF] Now listening on: http://localhost:5000
+")"2019-11-04 19:26:52.692 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+")"2019-11-04 19:26:52.693 +08:00 [INF] Hosting environment: Development
+")"2019-11-04 19:26:52.694 +08:00 [INF] Content root path: D:\Git_Repo\CoreNotes\CoreNotes.AutoFac\CoreNotes.AutoFac\CoreNotes.AutoFac.CoreApi
+")"2019-11-04 19:26:53.659 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Student  
+")"2019-11-04 19:26:53.706 +08:00 [INF] Executing endpoint 'CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi)'
+")"2019-11-04 19:26:53.763 +08:00 [INF] Route matched with {action = "GetStuNameById", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult GetStuNameById() on controller CoreNotes.AutoFac.CoreApi.Controllers.StudentController (CoreNotes.AutoFac.CoreApi).
+")"2019-11-04 19:26:56.221 +08:00 [ERR] 出错了 |    at CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById() in D:\Git_Repo\CoreNotes\CoreNotes.AutoFac\CoreNotes.AutoFac\CoreNotes.AutoFac.CoreApi\Controllers\StudentController.cs:line 24
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted) | 
+")"2019-11-04 19:26:56.304 +08:00 [INF] Executing ContentResult with HTTP Response ContentType of text/json;charset=utf-8;
+")"2019-11-04 19:26:56.319 +08:00 [INF] Executed action CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi) in 2550.2871ms
+")"2019-11-04 19:26:56.325 +08:00 [INF] Executed endpoint 'CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi)'
+")"2019-11-04 19:26:56.329 +08:00 [ERR] HTTP GET /Student responded 500 in 2652.8346 ms
+")"2019-11-04 19:26:56.333 +08:00 [INF] Request finished in 2676.7737ms 500 text/json;charset=utf-8;
+")"2019-11-04 19:27:47.092 +08:00 [INF] Starting web host
+")"2019-11-04 19:27:48.069 +08:00 [INF] User profile is available. Using 'C:\Users\宏达卓阳\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+")"2019-11-04 19:27:48.451 +08:00 [INF] Now listening on: http://localhost:5000
+")"2019-11-04 19:27:48.453 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+")"2019-11-04 19:27:48.454 +08:00 [INF] Hosting environment: Development
+")"2019-11-04 19:27:48.455 +08:00 [INF] Content root path: D:\Git_Repo\CoreNotes\CoreNotes.AutoFac\CoreNotes.AutoFac\CoreNotes.AutoFac.CoreApi
+")"2019-11-04 19:27:49.310 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Student  
+")"2019-11-04 19:27:49.472 +08:00 [INF] Executing endpoint 'CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi)'
+")"2019-11-04 19:27:49.519 +08:00 [INF] Route matched with {action = "GetStuNameById", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult GetStuNameById() on controller CoreNotes.AutoFac.CoreApi.Controllers.StudentController (CoreNotes.AutoFac.CoreApi).
+")"2019-11-04 19:27:51.597 +08:00 [ERR] 出错了 |    at CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById() in D:\Git_Repo\CoreNotes\CoreNotes.AutoFac\CoreNotes.AutoFac\CoreNotes.AutoFac.CoreApi\Controllers\StudentController.cs:line 24
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted) | 
+")"2019-11-04 19:27:51.686 +08:00 [INF] Executing ContentResult with HTTP Response ContentType of text/json;charset=utf-8;
+")"2019-11-04 19:27:51.707 +08:00 [INF] Executed action CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi) in 2182.3239000000003ms
+")"2019-11-04 19:27:51.712 +08:00 [INF] Executed endpoint 'CoreNotes.AutoFac.CoreApi.Controllers.StudentController.GetStuNameById (CoreNotes.AutoFac.CoreApi)'
+")"2019-11-04 19:27:51.716 +08:00 [ERR] HTTP GET /Student responded 500 in 2268.2947 ms
+")"2019-11-04 19:27:51.720 +08:00 [INF] Request finished in 2413.0917ms 500 text/json;charset=utf-8;
+")

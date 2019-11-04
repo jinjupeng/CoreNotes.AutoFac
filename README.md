@@ -48,10 +48,16 @@
 - [ ] **开发计划**
   - [X] 微软内置DI
   - [X] AutoFac
+  - [X] 配置数据库
+  - [X] 全局异常过滤
   - [ ] AutoMapper
-  - [x] Swagger UI
+  - [X] Swagger UI
   - [ ] REST Apis
   - [ ] 单元测试
+  - [ ] 权限配置
+  - [ ] 新增Vue前端
+  - [ ] 配置Dockerfile
+  - [ ] 部署到Linux上
 
 ## 链接
 

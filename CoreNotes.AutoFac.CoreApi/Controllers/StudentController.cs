@@ -1,4 +1,5 @@
-﻿using CoreNotes.AutoFac.IService;
+﻿using System;
+using CoreNotes.AutoFac.IService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreNotes.AutoFac.CoreApi.Controllers
@@ -20,7 +21,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         public ActionResult GetStuNameById(/* string id */)
         {
             string id = "236d37d4f3c14dd489b1c7270c7670ad";
-
+            throw new Exception("出错了");
 			return Ok(_studentService.GetStuName(id));
         }
     }

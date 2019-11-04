@@ -8,6 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
 using System;
+using CoreNotes.AutoFac.CoreApi.Filters;
+using CoreNotes.AutoFac.CoreApi.Middleware;
+using Serilog;
 
 namespace CoreNotes.AutoFac.CoreApi
 {
@@ -29,6 +32,11 @@ namespace CoreNotes.AutoFac.CoreApi
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             */
+            // 第一种：自定义过滤器并捕获全局异常
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<CustomExceptionFilter>();
+            });
             services.AddControllers();
 
             #region Swagger UI
@@ -58,21 +66,10 @@ namespace CoreNotes.AutoFac.CoreApi
         // 该方法在运行时被调用，通过该方法配置HTTP请求管道
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // 中间件
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-            app.UseStaticFiles(); // 访问静态文件中间件
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
             #region Swagger
             // 启动中间件服务生成Swagger作为JSON的终结点
             app.UseSwagger();
@@ -84,6 +81,19 @@ namespace CoreNotes.AutoFac.CoreApi
                 c.RoutePrefix = string.Empty;
             });
             #endregion
+            // 第二种：自定义中间件ExceptionMiddleware并加入管道用于捕获全局异常
+            app.UseMiddleware<ExceptionMiddleware>();
+            app.UseSerilogRequestLogging();
+            app.UseRouting();
+            app.UseStaticFiles(); // 访问静态文件中间件
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
         }
     }
 }
