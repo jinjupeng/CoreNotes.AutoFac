@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
-namespace CoreNotes.AutoFac.Model
+namespace CoreNotes.AutoFac.Model.Models
 {
     public class MenuEntity
     {

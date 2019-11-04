@@ -17,9 +17,11 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetStuNameById(long id)
+        public ActionResult GetStuNameById(/* string id */)
         {
-            return Ok(_studentService.GetStuName(id));
+            string id = "236d37d4f3c14dd489b1c7270c7670ad";
+
+			return Ok(_studentService.GetStuName(id));
         }
     }
 }

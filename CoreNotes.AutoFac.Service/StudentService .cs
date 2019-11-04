@@ -1,12 +1,14 @@
 ﻿using CoreNotes.AutoFac.IRepository;
 using CoreNotes.AutoFac.IService;
+using CoreNotes.AutoFac.Model.Models;
+using CoreNotes.AutoFac.Service.Base;
 
 namespace CoreNotes.AutoFac.Service
 {
-    /// <summary>
-    /// 学生逻辑处理
-    /// </summary>
-    public class StudentService : IStudentService
+	/// <summary>
+	/// 学生逻辑处理
+	/// </summary>
+	public class StudentService : BaseService<Student>, IStudentService
     {
         private readonly IStudentRepository _studentRepository;
 
@@ -19,11 +21,11 @@ namespace CoreNotes.AutoFac.Service
             _studentRepository = studentRepository;
         }
 
-        public string GetStuName(long id)
+        public string GetStuName(string id)
         {
-            // 模拟从数据库获取数据，然后处理数据
-            var stu = _studentRepository.Get(id);
-            return stu.Name;
+            var stu = _studentRepository.QueryById(id);
+            return stu.Result.Name;
         }
+
     }
 }

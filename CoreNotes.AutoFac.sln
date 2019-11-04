@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNotes.AutoFac.CoreApi", "CoreNotes.AutoFac.CoreApi\CoreNotes.AutoFac.CoreApi.csproj", "{8A4BD682-33B4-41D9-9C97-CAE8EFE07B7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNotes.AutoFac.ConsoleApp", "CoreNotes.AutoFac.ConsoleApp\CoreNotes.AutoFac.ConsoleApp.csproj", "{BF7C6C7B-044B-4A0C-879F-4DF2DA76BDFD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNotes.AutoFac.Model", "CoreNotes.AutoFac.Model\CoreNotes.AutoFac.Model.csproj", "{CA09FB16-03D7-4D3D-B782-6FB2EE05D899}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNotes.AutoFac.Repository", "CoreNotes.AutoFac.Repository\CoreNotes.AutoFac.Repository.csproj", "{9CDF4D90-DF5E-46D5-A1AF-88DC458BD4B3}"
@@ -17,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNotes.AutoFac.IService"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNotes.AutoFac.IRepository", "CoreNotes.AutoFac.IRepository\CoreNotes.AutoFac.IRepository.csproj", "{1CC89669-C64A-4CD1-AE2C-48A0335B37C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNotes.AutoFac.Ioc", "CoreNotes.AutoFac.Ioc\CoreNotes.AutoFac.Ioc.csproj", "{A4FEDE7C-A34C-432B-A68E-72A13DB0C90C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNotes.AutoFac.Ioc", "CoreNotes.AutoFac.Ioc\CoreNotes.AutoFac.Ioc.csproj", "{A4FEDE7C-A34C-432B-A68E-72A13DB0C90C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNotes.AutoFac.Common", "CoreNotes.AutoFac.Common\CoreNotes.AutoFac.Common.csproj", "{2D9E90BA-1E6F-47FE-9EC9-CA6A282605F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{8A4BD682-33B4-41D9-9C97-CAE8EFE07B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A4BD682-33B4-41D9-9C97-CAE8EFE07B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A4BD682-33B4-41D9-9C97-CAE8EFE07B7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF7C6C7B-044B-4A0C-879F-4DF2DA76BDFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF7C6C7B-044B-4A0C-879F-4DF2DA76BDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF7C6C7B-044B-4A0C-879F-4DF2DA76BDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF7C6C7B-044B-4A0C-879F-4DF2DA76BDFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CA09FB16-03D7-4D3D-B782-6FB2EE05D899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CA09FB16-03D7-4D3D-B782-6FB2EE05D899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA09FB16-03D7-4D3D-B782-6FB2EE05D899}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +53,10 @@ Global
 		{A4FEDE7C-A34C-432B-A68E-72A13DB0C90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4FEDE7C-A34C-432B-A68E-72A13DB0C90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4FEDE7C-A34C-432B-A68E-72A13DB0C90C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9E90BA-1E6F-47FE-9EC9-CA6A282605F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9E90BA-1E6F-47FE-9EC9-CA6A282605F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9E90BA-1E6F-47FE-9EC9-CA6A282605F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9E90BA-1E6F-47FE-9EC9-CA6A282605F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
