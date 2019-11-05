@@ -12,7 +12,7 @@
     "CoreNotes.AutoFac.CoreApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "Student",
+      "launchUrl": "index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
