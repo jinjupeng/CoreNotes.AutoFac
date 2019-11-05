@@ -39,7 +39,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:根据ID查询数据
-        
         /// </summary>
         /// <param name="lstIds">id列表（必须指定主键特性 [SugarColumn(IsPrimaryKey=true)]），如果是联合主键，请使用Where条件</param>
         /// <returns>数据实体列表</returns>
@@ -120,12 +119,7 @@ namespace CoreNotes.AutoFac.Repository.Base
             return await Db.Ado.ExecuteCommandAsync(strSql, parameters) > 0;
         }
 
-        public async Task<bool> Update(
-          T entity,
-          List<string> lstColumns = null,
-          List<string> lstIgnoreColumns = null,
-          string strWhere = ""
-            )
+        public async Task<bool> Update(T entity, List<string> lstColumns = null, List<string> lstIgnoreColumns = null, string strWhere = "")
         {
             //IUpdateable<T> up = await Task.Run(() => _db.Updateable(entity));
             //if (lstIgnoreColumns != null && lstIgnoreColumns.Count > 0)
@@ -198,7 +192,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:查询所有数据
-        
         /// </summary>
         /// <returns>数据列表</returns>
         public async Task<List<T>> Query()
@@ -209,7 +202,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:查询数据列表
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <returns>数据列表</returns>
@@ -221,7 +213,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:查询数据列表
-        
         /// </summary>
         /// <param name="whereExpression">whereExpression</param>
         /// <returns>数据列表</returns>
@@ -233,7 +224,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:查询一个列表
-        
         /// </summary>
         /// <param name="whereExpression">条件表达式</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
@@ -258,7 +248,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:查询一个列表
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
@@ -272,16 +261,12 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:查询前N条数据
-        
         /// </summary>
         /// <param name="whereExpression">条件表达式</param>
         /// <param name="intTop">前N条</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
         /// <returns>数据列表</returns>
-        public async Task<List<T>> Query(
-            Expression<Func<T, bool>> whereExpression,
-            int intTop,
-            string strOrderByFileds)
+        public async Task<List<T>> Query(Expression<Func<T, bool>> whereExpression, int intTop, string strOrderByFileds)
         {
             //return await Task.Run(() => _db.Queryable<T>().OrderByIF(!string.IsNullOrEmpty(strOrderByFileds), strOrderByFileds).WhereIF(whereExpression != null, whereExpression).Take(intTop).ToList());
             return await Db.Queryable<T>().OrderByIF(!string.IsNullOrEmpty(strOrderByFileds), strOrderByFileds).WhereIF(whereExpression != null, whereExpression).Take(intTop).ToListAsync();
@@ -289,7 +274,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:查询前N条数据
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <param name="intTop">前N条</param>
@@ -308,7 +292,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:分页查询
-        
         /// </summary>
         /// <param name="whereExpression">条件表达式</param>
         /// <param name="intPageIndex">页码（下标0）</param>
@@ -316,11 +299,7 @@ namespace CoreNotes.AutoFac.Repository.Base
         /// <param name="intTotalCount">数据总量</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
         /// <returns>数据列表</returns>
-        public async Task<List<T>> Query(
-            Expression<Func<T, bool>> whereExpression,
-            int intPageIndex,
-            int intPageSize,
-            string strOrderByFileds)
+        public async Task<List<T>> Query(Expression<Func<T, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds)
         {
             //return await Task.Run(() => _db.Queryable<T>().OrderByIF(!string.IsNullOrEmpty(strOrderByFileds), strOrderByFileds).WhereIF(whereExpression != null, whereExpression).ToPageList(intPageIndex, intPageSize));
             return await Db.Queryable<T>().OrderByIF(!string.IsNullOrEmpty(strOrderByFileds), strOrderByFileds).WhereIF(whereExpression != null, whereExpression).ToPageListAsync(intPageIndex, intPageSize);
@@ -328,7 +307,6 @@ namespace CoreNotes.AutoFac.Repository.Base
 
         /// <summary>
         /// 功能描述:分页查询
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <param name="intPageIndex">页码（下标0）</param>
@@ -336,12 +314,7 @@ namespace CoreNotes.AutoFac.Repository.Base
         /// <param name="intTotalCount">数据总量</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
         /// <returns>数据列表</returns>
-        public async Task<List<T>> Query(
-          string strWhere,
-          int intPageIndex,
-          int intPageSize,
-
-          string strOrderByFileds)
+        public async Task<List<T>> Query(string strWhere, int intPageIndex, int intPageSize, string strOrderByFileds)
         {
             //return await Task.Run(() => _db.Queryable<T>().OrderByIF(!string.IsNullOrEmpty(strOrderByFileds), strOrderByFileds).WhereIF(!string.IsNullOrEmpty(strWhere), strWhere).ToPageList(intPageIndex, intPageSize));
             return await Db.Queryable<T>().OrderByIF(!string.IsNullOrEmpty(strOrderByFileds), strOrderByFileds).WhereIF(!string.IsNullOrEmpty(strWhere), strWhere).ToPageListAsync(intPageIndex, intPageSize);
@@ -404,24 +377,5 @@ namespace CoreNotes.AutoFac.Repository.Base
             //return await Task.Run(() => _db.Queryable<T>().WithCacheIF(blnUseCache).InSingle(objId));
             return await Db.Queryable<T>().WithCacheIF(blnUseCache).In(objId).SingleAsync();
         }
-
-        /*
-        public virtual T Get(string id)
-        {
-            // 没有连接数据库，利用反射，造个假数据返回用于测试
-            T instance = Activator.CreateInstance<T>();
-
-            var stuEntity = instance as Student;
-            if (stuEntity != null)
-            {
-                stuEntity.Id = id;
-                stuEntity.Name = "学生张三";
-                stuEntity.Grade = 99;
-                return stuEntity as T;
-            }
-
-            return instance;
-        }
-        */
     }
 }

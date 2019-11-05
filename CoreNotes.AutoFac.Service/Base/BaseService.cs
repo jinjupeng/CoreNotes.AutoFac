@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 using CoreNotes.AutoFac.IRepository.Base;
 using CoreNotes.AutoFac.IService.Base;
 using CoreNotes.AutoFac.Model;
+using CoreNotes.AutoFac.Repository.Base;
 
 namespace CoreNotes.AutoFac.Service.Base
 {
     public class BaseService<T> : IBaseService<T> where T : class, new()
     {
-        //public IBaseRepository<T> baseDal = new BaseRepository<T>();
-        public IBaseRepository<T> BaseDal;// 通过在子类的构造函数中注入，这里是基类，不用构造函数
+        public IBaseRepository<T> BaseDal = new BaseRepository<T>();
+
+        // 这里出错，BaseDal = null，无法查询数据
+        // public IBaseRepository<T> BaseDal;// 通过在子类的构造函数中注入，这里是基类，不用构造函数
 
         public async Task<T> QueryById(object objId)
         {
@@ -19,7 +22,6 @@ namespace CoreNotes.AutoFac.Service.Base
         }
         /// <summary>
         /// 功能描述:根据ID查询一条数据
-        
         /// </summary>
         /// <param name="objId">id（必须指定主键特性 [SugarColumn(IsPrimaryKey=true)]），如果是联合主键，请使用Where条件</param>
         /// <param name="blnUseCache">是否使用缓存</param>
@@ -31,7 +33,6 @@ namespace CoreNotes.AutoFac.Service.Base
 
         /// <summary>
         /// 功能描述:根据ID查询数据
-        
         /// </summary>
         /// <param name="lstIds">id列表（必须指定主键特性 [SugarColumn(IsPrimaryKey=true)]），如果是联合主键，请使用Where条件</param>
         /// <returns>数据实体列表</returns>
@@ -43,7 +44,7 @@ namespace CoreNotes.AutoFac.Service.Base
         /// <summary>
         /// 写入实体数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">实体类</param>
         /// <returns></returns>
         public async Task<int> Add(T entity)
         {
@@ -53,7 +54,7 @@ namespace CoreNotes.AutoFac.Service.Base
         /// <summary>
         /// 更新实体数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">实体类</param>
         /// <returns></returns>
         public async Task<bool> Update(T entity)
         {
@@ -64,12 +65,7 @@ namespace CoreNotes.AutoFac.Service.Base
             return await BaseDal.Update(entity, strWhere);
         }
 
-        public async Task<bool> Update(
-         T entity,
-         List<string> lstColumns = null,
-         List<string> lstIgnoreColumns = null,
-         string strWhere = ""
-            )
+        public async Task<bool> Update(T entity, List<string> lstColumns = null, List<string> lstIgnoreColumns = null, string strWhere = "")
         {
             return await BaseDal.Update(entity, lstColumns, lstIgnoreColumns, strWhere);
         }
@@ -78,7 +74,7 @@ namespace CoreNotes.AutoFac.Service.Base
         /// <summary>
         /// 根据实体删除一条数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">实体类</param>
         /// <returns></returns>
         public async Task<bool> Delete(T entity)
         {
@@ -105,11 +101,8 @@ namespace CoreNotes.AutoFac.Service.Base
             return await BaseDal.DeleteByIds(ids);
         }
 
-
-
         /// <summary>
         /// 功能描述:查询所有数据
-        
         /// </summary>
         /// <returns>数据列表</returns>
         public async Task<List<T>> Query()
@@ -119,7 +112,6 @@ namespace CoreNotes.AutoFac.Service.Base
 
         /// <summary>
         /// 功能描述:查询数据列表
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <returns>数据列表</returns>
@@ -130,7 +122,6 @@ namespace CoreNotes.AutoFac.Service.Base
 
         /// <summary>
         /// 功能描述:查询数据列表
-        
         /// </summary>
         /// <param name="whereExpression">whereExpression</param>
         /// <returns>数据列表</returns>
@@ -140,7 +131,6 @@ namespace CoreNotes.AutoFac.Service.Base
         }
         /// <summary>
         /// 功能描述:查询一个列表
-        
         /// </summary>
         /// <param name="whereExpression">条件表达式</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
@@ -157,7 +147,6 @@ namespace CoreNotes.AutoFac.Service.Base
 
         /// <summary>
         /// 功能描述:查询一个列表
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
@@ -169,7 +158,6 @@ namespace CoreNotes.AutoFac.Service.Base
 
         /// <summary>
         /// 功能描述:查询前N条数据
-        
         /// </summary>
         /// <param name="whereExpression">条件表达式</param>
         /// <param name="intTop">前N条</param>
@@ -182,23 +170,18 @@ namespace CoreNotes.AutoFac.Service.Base
 
         /// <summary>
         /// 功能描述:查询前N条数据
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <param name="intTop">前N条</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
         /// <returns>数据列表</returns>
-        public async Task<List<T>> Query(
-            string strWhere,
-            int intTop,
-            string strOrderByFileds)
+        public async Task<List<T>> Query(string strWhere, int intTop, string strOrderByFileds)
         {
             return await BaseDal.Query(strWhere, intTop, strOrderByFileds);
         }
 
         /// <summary>
         /// 功能描述:分页查询
-        
         /// </summary>
         /// <param name="whereExpression">条件表达式</param>
         /// <param name="intPageIndex">页码（下标0）</param>
@@ -206,11 +189,7 @@ namespace CoreNotes.AutoFac.Service.Base
         /// <param name="intTotalCount">数据总量</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
         /// <returns>数据列表</returns>
-        public async Task<List<T>> Query(
-            Expression<Func<T, bool>> whereExpression,
-            int intPageIndex,
-            int intPageSize,
-            string strOrderByFileds)
+        public async Task<List<T>> Query(Expression<Func<T, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds)
         {
             return await BaseDal.Query(
               whereExpression,
@@ -221,7 +200,6 @@ namespace CoreNotes.AutoFac.Service.Base
 
         /// <summary>
         /// 功能描述:分页查询
-        
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <param name="intPageIndex">页码（下标0）</param>
@@ -229,24 +207,15 @@ namespace CoreNotes.AutoFac.Service.Base
         /// <param name="intTotalCount">数据总量</param>
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
         /// <returns>数据列表</returns>
-        public async Task<List<T>> Query(
-          string strWhere,
-          int intPageIndex,
-          int intPageSize,
-          string strOrderByFileds)
+        public async Task<List<T>> Query(string strWhere, int intPageIndex, int intPageSize, string strOrderByFileds)
         {
-            return await BaseDal.Query(
-            strWhere,
-            intPageIndex,
-            intPageSize,
-            strOrderByFileds);
+            return await BaseDal.Query(strWhere, intPageIndex, intPageSize, strOrderByFileds);
         }
 
         public async Task<PageModel<T>> QueryPage(Expression<Func<T, bool>> whereExpression,
         int intPageIndex = 1, int intPageSize = 20, string strOrderByFileds = null)
         {
-            return await BaseDal.QueryPage(whereExpression,
-         intPageIndex, intPageSize, strOrderByFileds);
+            return await BaseDal.QueryPage(whereExpression, intPageIndex, intPageSize, strOrderByFileds);
         }
 
         public async Task<List<TResult>> QueryMuch<T1, T2, T3, TResult>(Expression<Func<T1, T2, T3, object[]>> joinExpression, Expression<Func<T1, T2, T3, TResult>> selectExpression, Expression<Func<T1, T2, T3, bool>> whereLambda = null) where T1 : class, new()
