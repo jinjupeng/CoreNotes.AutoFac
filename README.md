@@ -55,7 +55,7 @@
   - [ ] REST Apis
   - [ ] 单元测试
   - [ ] 权限配置
-  - [ ] 新增Vue前端
+  - [x] 新增Vue前端
   - [ ] 配置Dockerfile
   - [ ] 部署到Linux上
 
