@@ -51,7 +51,7 @@ namespace CoreNotes.AutoFac.Repository.Base
         /// <summary>
         /// 写入实体数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">实体类</param>
         /// <returns></returns>
         public async Task<int> Add(T entity)
         {
@@ -96,7 +96,7 @@ namespace CoreNotes.AutoFac.Repository.Base
         /// <summary>
         /// 更新实体数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">实体类</param>
         /// <returns></returns>
         public async Task<bool> Update(T entity)
         {
@@ -155,7 +155,7 @@ namespace CoreNotes.AutoFac.Repository.Base
         /// <summary>
         /// 根据实体删除一条数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">实体类</param>
         /// <returns></returns>
         public async Task<bool> Delete(T entity)
         {

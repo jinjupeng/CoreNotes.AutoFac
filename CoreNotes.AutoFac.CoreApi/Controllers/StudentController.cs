@@ -56,9 +56,9 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<MessageModel<PageModel<Student>>> GetList()
+        public async Task<MessageModel<PageModel<Student>>> GetList(int pageIndex, int pageSize)
         {
-            var data = await _studentService.QueryPage(a => a.IsDelete == 0);
+            var data = await _studentService.QueryPage(a => a.IsDelete == 0, pageIndex, pageSize);
             MessageModel<PageModel<Student>> message = new MessageModel<PageModel<Student>>
             { 
                 Msg = "获取成功！",
@@ -110,6 +110,50 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                 data.Response = student.Id;
                 data.Msg = "添加成功";
             }
+            return data;
+        }
+        /// <summary>
+        /// 新增或更新学生信息
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<MessageModel<string>> CreateOrUpdate(Student student)
+        {
+            var data = new MessageModel<string>();
+            
+            if (string.IsNullOrWhiteSpace(student.Id))
+            {
+                student.Id = Guid.NewGuid().ToString("N");
+                student.IsDelete = 0;
+                student.CreateDate = DateTime.Now;
+                var result = await _studentService.Add(student);
+                data.Success = result > 0;
+                if (data.Success)
+                {
+                    data.Response = result.ObjToString();
+                    data.Msg = "添加成功";
+                }
+                else
+                {
+                    data.Msg = "添加失败";
+                }
+            }
+            else
+            {
+                var result = await _studentService.Update(student);
+                data.Success = result;
+                if (data.Success)
+                {
+                    data.Response = student.Id;
+                    data.Msg = "添加成功";
+                }
+                else
+                {
+                    data.Msg = "添加失败";
+                }
+            }
+
             return data;
         }
     }
