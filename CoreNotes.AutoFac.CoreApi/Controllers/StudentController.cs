@@ -20,20 +20,6 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             _studentService = studentService;
         }
 
-        [HttpGet]
-        public ActionResult GetName(/* string id */)
-        {
-            string id = "236d37d4f3c14dd489b1c7270c7670ad";
-            // throw new Exception("出错了");
-            MessageModel<string> message = new MessageModel<string>
-            {
-                Msg = "获取成功！",
-                Success = true,
-                Response = _studentService.GetStuName(id)
-            };
-            return Ok(message);
-        }
-
         /// <summary>
         /// 查询单条数据
         /// </summary>
@@ -58,7 +44,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         [HttpGet]
         public async Task<MessageModel<PageModel<Student>>> GetList(int pageIndex, int pageSize)
         {
-            var data = await _studentService.QueryPage(a => a.IsDelete == 0, pageIndex, pageSize);
+            var data = await _studentService.QueryPage(a => a.IsDelete == false, pageIndex, pageSize);
             MessageModel<PageModel<Student>> message = new MessageModel<PageModel<Student>>
             { 
                 Msg = "获取成功！",
@@ -77,18 +63,21 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         public async Task<MessageModel<string>> Add(Student student)
         {
             var data = new MessageModel<string>();
-            student.Id = Guid.NewGuid().ToString("N");
-            student.IsDelete = 0;
-            student.CreateDate = DateTime.Now;
-            
-
-            var result = await _studentService.Add(student);
-            data.Success = result > 0;
-            if (data.Success)
+            if (student != null)
             {
+                student.Id = Guid.NewGuid().ToString("N");
+                student.IsDelete = false;
+                student.CreateDate = DateTime.Now;
+
+
+                var result = await _studentService.Add(student);
+                data.Success = result > 0;
+                if (!data.Success) return data;
                 data.Response = result.ObjToString();
-                data.Msg = "添加成功";
             }
+
+            data.Msg = "添加成功";
+            // TODO：添加日志到数据库
             return data;
         }
 
@@ -101,15 +90,18 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         public async Task<MessageModel<string>> Edit(Student student)
         {
             var data = new MessageModel<string>();
-            student.UpdateDate = DateTime.Now;
-
-            var result = await _studentService.Update(student);
-            data.Success = result;
-            if (data.Success)
+            if (student != null)
             {
+                student.UpdateDate = DateTime.Now;
+
+                var result = await _studentService.Update(student);
+                data.Success = result;
+                if (!data.Success) return data;
                 data.Response = student.Id;
                 data.Msg = "添加成功";
             }
+
+            // TODO：添加日志到数据库
             return data;
         }
         /// <summary>
@@ -125,7 +117,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             if (string.IsNullOrWhiteSpace(student.Id))
             {
                 student.Id = Guid.NewGuid().ToString("N");
-                student.IsDelete = 0;
+                student.IsDelete = false;
                 student.CreateDate = DateTime.Now;
                 var result = await _studentService.Add(student);
                 data.Success = result > 0;
@@ -153,8 +145,34 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                     data.Msg = "添加失败";
                 }
             }
+            // TODO：添加日志到数据库
+            return data;
+        }
+
+        /// <summary>
+        /// 删除单条用户数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<MessageModel<string>> Delete(string id)
+        {
+            var data = new MessageModel<string>();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var studentDetail = await _studentService.QueryById(id);
+                studentDetail.IsDelete = true;
+                data.Success = await _studentService.Update(studentDetail);
+                if (data.Success)
+                {
+                    data.Msg = "删除成功";
+                    data.Response = studentDetail?.Id.ObjToString();
+                }
+            }
 
             return data;
         }
+
+        // TODO：多条删除
     }
 }

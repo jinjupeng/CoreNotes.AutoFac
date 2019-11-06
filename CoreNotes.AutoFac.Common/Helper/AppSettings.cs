@@ -32,7 +32,7 @@ namespace CoreNotes.AutoFac.Common.Helper
         /// </summary>
         /// <param name="sections"></param>
         /// <returns></returns>
-        public static string app(params string[] sections)
+        public static string App(params string[] sections)
         {
             try
             {

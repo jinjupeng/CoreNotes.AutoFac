@@ -5,17 +5,17 @@ namespace CoreNotes.AutoFac.Common.DB
 {
     public class BaseDbConfig
     {
-        private static string sqliteConnection = AppSettings.app(new string[] { "AppSettings", "Sqlite", "SqliteConnection" });
-        private static bool isSqliteEnabled = (AppSettings.app(new string[] { "AppSettings", "Sqlite", "Enabled" })).ObjToBool();
+        private static string sqliteConnection = AppSettings.App(new string[] { "AppSettings", "Sqlite", "SqliteConnection" });
+        private static bool isSqliteEnabled = (AppSettings.App(new string[] { "AppSettings", "Sqlite", "Enabled" })).ObjToBool();
 
-        private static string sqlServerConnection = AppSettings.app(new string[] { "AppSettings", "SqlServer", "SqlServerConnection" });
-        private static bool isSqlServerEnabled = (AppSettings.app(new string[] { "AppSettings", "SqlServer", "Enabled" })).ObjToBool();
+        private static string sqlServerConnection = AppSettings.App(new string[] { "AppSettings", "SqlServer", "SqlServerConnection" });
+        private static bool isSqlServerEnabled = (AppSettings.App(new string[] { "AppSettings", "SqlServer", "Enabled" })).ObjToBool();
 
-        private static string mySqlConnection = AppSettings.app(new string[] { "AppSettings", "MySql", "MySqlConnection" });
-        private static bool isMySqlEnabled = (AppSettings.app(new string[] { "AppSettings", "MySql", "Enabled" })).ObjToBool();
+        private static string mySqlConnection = AppSettings.App(new string[] { "AppSettings", "MySql", "MySqlConnection" });
+        private static bool isMySqlEnabled = (AppSettings.App(new string[] { "AppSettings", "MySql", "Enabled" })).ObjToBool();
 
-        private static string oracleConnection = AppSettings.app(new string[] { "AppSettings", "Oracle", "OracleConnection" });
-        private static bool IsOracleEnabled = (AppSettings.app(new string[] { "AppSettings", "Oracle", "Enabled" })).ObjToBool();
+        private static string oracleConnection = AppSettings.App(new string[] { "AppSettings", "Oracle", "OracleConnection" });
+        private static bool IsOracleEnabled = (AppSettings.App(new string[] { "AppSettings", "Oracle", "Enabled" })).ObjToBool();
 
 
         public static string ConnectionString => InitConn();
