@@ -60,7 +60,8 @@ namespace CoreNotes.AutoFac.Repository.Base
             //return (int)i;
 
             var insert = Db.Insertable(entity);
-            return await insert.ExecuteReturnIdentityAsync();
+            // return await insert.ExecuteReturnIdentityAsync(); // 返回自增列,但是如果主键id是字符串时，默认只返回0
+            return await insert.ExecuteCommandAsync(); // 返回受影响行数
         }
 
 
