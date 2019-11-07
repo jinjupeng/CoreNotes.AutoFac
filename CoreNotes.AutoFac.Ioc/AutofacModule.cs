@@ -12,8 +12,12 @@ namespace CoreNotes.AutoFac.Ioc
         {
             builder.RegisterType<StudentService>().As<IStudentService>().SingleInstance();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>().SingleInstance();
+
             builder.RegisterType<UserService>().As<IUserService>().SingleInstance();
             builder.RegisterType<UserRepository>().As<IUserRepository>().SingleInstance();
+
+            builder.RegisterType<RoleService>().As<IRoleService>().SingleInstance();
+            builder.RegisterType<RoleRepository>().As<IRoleRepository>().SingleInstance();
 
             builder.RegisterType<MenuService>().As<IMenuService>().SingleInstance();
             builder.RegisterType<MenuRepository>().As<IMenuRepository>().SingleInstance();

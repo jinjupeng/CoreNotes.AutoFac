@@ -5,7 +5,7 @@ namespace CoreNotes.AutoFac.Model.Models
 {
     public class User
     {
-        [SugarColumn(IsPrimaryKey = true, IsNullable = true, IsIdentity = false)]
+        [SugarColumn(IsPrimaryKey = true, IsNullable = true, IsIdentity = true)]
         public int Id { get; set; }
         public string LoginName { get; set; }
         public string Pwd { get; set; }

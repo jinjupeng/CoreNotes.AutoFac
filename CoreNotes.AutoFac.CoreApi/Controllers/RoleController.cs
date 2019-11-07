@@ -12,13 +12,13 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
     /// 用户模块接口
     /// </summary>
     [Route("[controller]/[action]")]
-    public class UserController : ControllerBase
+    public class RoleController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IRoleService _roleService;
 
-        public UserController(IUserService userService)
+        public RoleController(IRoleService roleService)
         {
-            _userService = userService;
+            _roleService = roleService;
         }
 
         /// <summary>
@@ -27,10 +27,10 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<MessageModel<User>> Get(int id)
+        public async Task<MessageModel<Role>> Get(int id)
         {
-            var model = await _userService.QueryById(id);
-            MessageModel<User> message = new MessageModel<User>
+            var model = await _roleService.QueryById(id);
+            MessageModel<Role> message = new MessageModel<Role>
             {
                 Msg = "获取成功！",
                 Success = true,
@@ -44,10 +44,10 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<MessageModel<PageModel<User>>> GetList(int pageIndex, int pageSize, string name)
+        public async Task<MessageModel<PageModel<Role>>> GetList(int pageIndex, int pageSize, string name)
         {
-            var data = await _userService.QueryPage(a => a.IsDelete == false, pageIndex, pageSize);
-            var message = new MessageModel<PageModel<User>>
+            var data = await _roleService.QueryPage(a => a.IsDelete == false, pageIndex, pageSize);
+            var message = new MessageModel<PageModel<Role>>
             {
                 Msg = "获取成功！",
                 Success = data.DataCount > 0,
@@ -59,19 +59,19 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// <summary>
         /// 新增用户信息
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="role"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<MessageModel<string>> Post(User user)
+        public async Task<MessageModel<string>> Post(Role role)
         {
             var data = new MessageModel<string>();
 
-            if (user != null)
+            if (role != null)
             {
-                user.IsDelete = false;
-                user.CreateTime = DateTime.Now;
-                user.UpdateTime = DateTime.Now;
-                var result = await _userService.Add(user);
+                role.IsDelete = false;
+                role.CreateTime = DateTime.Now;
+                role.ModifyTime = DateTime.Now;
+                var result = await _roleService.Add(role);
                 data.Success = result > 0;
                 if (data.Success)
                 {
@@ -79,7 +79,6 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                     data.Msg = "添加成功";
                 }
             }
-            // TODO：md5加密密码
 
             // TODO：添加日志到数据库
             return data;
@@ -88,23 +87,22 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// <summary>
         /// 更新用户信息
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="role"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<MessageModel<string>> Put( User user)
+        public async Task<MessageModel<string>> Put(Role role)
         {
             var data = new MessageModel<string>();
-            if (user != null && user.Id > 0)
+            if (role != null && role.Id > 0)
             {
-                var result = await _userService.Update(user);
+                var result = await _roleService.Update(role);
                 data.Success = result;
                 if (data.Success)
                 {
-                    data.Response = user?.Id.ObjToString();
+                    data.Response = role?.Id.ObjToString();
                     data.Msg = "添加成功";
                 }
             }
-            // TODO：md5加密密码
 
             // TODO：添加日志到数据库
             return data;
@@ -121,22 +119,18 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             var data = new MessageModel<string>();
             if (id > 0)
             {
-                var userDetail = await _userService.QueryById(id);
-                userDetail.IsDelete = true;
-                data.Success = await _userService.Update(userDetail);
+                var roleDetail = await _roleService.QueryById(id);
+                roleDetail.IsDelete = true;
+                data.Success = await _roleService.Update(roleDetail);
                 if (data.Success)
                 {
                     data.Msg = "删除成功";
-                    data.Response = userDetail?.Id.ObjToString();
+                    data.Response = roleDetail?.Id.ObjToString();
                 }
             }
 
             return data;
         }
-
-        // TODO：修改密码
-
-        // TODO：退出登录
 
     }
 }

@@ -50,9 +50,10 @@
   - [X] AutoFac
   - [X] 配置数据库
   - [X] 全局异常过滤
+  - [X] 日志框架Serilog
   - [ ] AutoMapper
   - [X] Swagger UI
-  - [ ] REST Apis
+  - [x] REST API
   - [ ] 单元测试
   - [ ] 权限配置
   - [x] 新增Vue前端
