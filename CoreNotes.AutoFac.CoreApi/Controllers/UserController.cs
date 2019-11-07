@@ -42,11 +42,15 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// <summary>
         /// 分页查询
         /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="name">登录名或昵称</param>
+        /// <param name="status">用户状态：启用/禁用</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<MessageModel<PageModel<User>>> GetList(int pageIndex, int pageSize, string name)
+        public async Task<MessageModel<PageModel<User>>> GetList(int pageIndex, int pageSize, string name, int status)
         {
-            var data = await _userService.QueryPage(a => a.IsDelete == false, pageIndex, pageSize);
+            var data = await _userService.QueryPage(pageIndex, pageSize, name, status);
             var message = new MessageModel<PageModel<User>>
             {
                 Msg = "获取成功！",
@@ -71,6 +75,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                 user.IsDelete = false;
                 user.CreateTime = DateTime.Now;
                 user.UpdateTime = DateTime.Now;
+                user.LastErrTime = DateTime.Now;
                 var result = await _userService.Add(user);
                 data.Success = result > 0;
                 if (data.Success)
@@ -96,6 +101,8 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             var data = new MessageModel<string>();
             if (user != null && user.Id > 0)
             {
+                user.LastErrTime = DateTime.Now;
+                user.UpdateTime = DateTime.Now;
                 var result = await _userService.Update(user);
                 data.Success = result;
                 if (data.Success)

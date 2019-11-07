@@ -17,8 +17,8 @@ namespace CoreNotes.AutoFac.Repository.Base
     public class BaseRepository<T> : IBaseRepository<T> where T : class, new()
     {
         public DbContext Context { get; set; }
-        internal SqlSugarClient Db { get; private set; }
-        internal SimpleClient<T> EntityDb { get; private set; }
+        protected SqlSugarClient Db { get; private set; }
+        protected SimpleClient<T> EntityDb { get; private set; }
         /// <summary>
         /// 构造函数初始化类
         /// </summary>
