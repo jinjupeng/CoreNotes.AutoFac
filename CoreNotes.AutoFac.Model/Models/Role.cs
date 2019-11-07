@@ -1,9 +1,11 @@
 ﻿using System;
+using SqlSugar;
 
 namespace CoreNotes.AutoFac.Model.Models
 {
     public class Role
     {
+        [SugarColumn(IsPrimaryKey = true, IsNullable = true, IsIdentity = true)]
         public int Id { get; set; }
         public bool IsDelete { get; set; }
         public string Description { get; set; }
