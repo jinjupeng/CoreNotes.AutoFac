@@ -29,7 +29,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         [HttpGet]
         public async Task<MessageModel<User>> Get(int id)
         {
-            var model = await _userService.QueryById(id);
+            var model = await _userService.QueryById(id).ConfigureAwait(false);
             MessageModel<User> message = new MessageModel<User>
             {
                 Msg = "获取成功！",
@@ -50,7 +50,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         [HttpGet]
         public async Task<MessageModel<PageModel<User>>> GetList(int pageIndex, int pageSize, string name, int status)
         {
-            var data = await _userService.QueryPage(pageIndex, pageSize, name, status);
+            var data = await _userService.QueryPage(pageIndex, pageSize, name, status).ConfigureAwait(false);
             var message = new MessageModel<PageModel<User>>
             {
                 Msg = "获取成功！",
@@ -76,7 +76,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                 user.CreateTime = DateTime.Now;
                 user.UpdateTime = DateTime.Now;
                 user.LastErrTime = DateTime.Now;
-                var result = await _userService.Add(user);
+                var result = await _userService.Add(user).ConfigureAwait(false);
                 data.Success = result > 0;
                 if (data.Success)
                 {
@@ -103,7 +103,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             {
                 user.LastErrTime = DateTime.Now;
                 user.UpdateTime = DateTime.Now;
-                var result = await _userService.Update(user);
+                var result = await _userService.Update(user).ConfigureAwait(false);
                 data.Success = result;
                 if (data.Success)
                 {
@@ -128,9 +128,9 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             var data = new MessageModel<string>();
             if (id > 0)
             {
-                var userDetail = await _userService.QueryById(id);
+                var userDetail = await _userService.QueryById(id).ConfigureAwait(false);
                 userDetail.IsDelete = true;
-                data.Success = await _userService.Update(userDetail);
+                data.Success = await _userService.Update(userDetail).ConfigureAwait(false);
                 if (data.Success)
                 {
                     data.Msg = "删除成功";
