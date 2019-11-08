@@ -29,7 +29,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         [HttpGet]
         public async Task<MessageModel<Role>> Get(int id)
         {
-            var model = await _roleService.QueryById(id);
+            var model = await _roleService.QueryById(id).ConfigureAwait(false);
             MessageModel<Role> message = new MessageModel<Role>
             {
                 Msg = "获取成功！",
@@ -46,7 +46,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         [HttpGet]
         public async Task<MessageModel<PageModel<Role>>> GetList(int pageIndex, int pageSize, string name)
         {
-            var data = await _roleService.QueryPage(a => a.IsDelete == false, pageIndex, pageSize);
+            var data = await _roleService.QueryPage(pageIndex, pageSize, name).ConfigureAwait(false);
             var message = new MessageModel<PageModel<Role>>
             {
                 Msg = "获取成功！",
@@ -71,7 +71,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                 role.IsDelete = false;
                 role.CreateTime = DateTime.Now;
                 role.ModifyTime = DateTime.Now;
-                var result = await _roleService.Add(role);
+                var result = await _roleService.Add(role).ConfigureAwait(false);
                 data.Success = result > 0;
                 if (data.Success)
                 {
@@ -95,7 +95,8 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             var data = new MessageModel<string>();
             if (role != null && role.Id > 0)
             {
-                var result = await _roleService.Update(role);
+                role.ModifyTime = DateTime.Now;
+                var result = await _roleService.Update(role).ConfigureAwait(false);
                 data.Success = result;
                 if (data.Success)
                 {
@@ -119,9 +120,9 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             var data = new MessageModel<string>();
             if (id > 0)
             {
-                var roleDetail = await _roleService.QueryById(id);
+                var roleDetail = await _roleService.QueryById(id).ConfigureAwait(false);
                 roleDetail.IsDelete = true;
-                data.Success = await _roleService.Update(roleDetail);
+                data.Success = await _roleService.Update(roleDetail).ConfigureAwait(false);
                 if (data.Success)
                 {
                     data.Msg = "删除成功";

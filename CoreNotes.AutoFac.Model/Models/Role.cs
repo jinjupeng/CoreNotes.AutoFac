@@ -8,6 +8,7 @@ namespace CoreNotes.AutoFac.Model.Models
         [SugarColumn(IsPrimaryKey = true, IsNullable = true, IsIdentity = true)]
         public int Id { get; set; }
         public bool IsDelete { get; set; }
+        public string RoleName { get; set; }
         public string Description { get; set; }
         public int OrderSort { get; set; }
         public bool Enabled { get; set; }
