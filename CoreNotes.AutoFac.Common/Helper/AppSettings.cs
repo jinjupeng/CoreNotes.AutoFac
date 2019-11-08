@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 
@@ -10,21 +9,13 @@ namespace CoreNotes.AutoFac.Common.Helper
     /// </summary>
     public class AppSettings
     {
-        static IConfiguration Configuration { get; set; }
-        static string contentPath { get; set; }
-
-
-        public AppSettings(IHostingEnvironment env)
+        public static IConfiguration Configuration { get; set; }
+        static AppSettings()
         {
-            string Path = "appsettings.json";
-
-            var contentPath = env.ContentRootPath;
+            // ReloadOnChange = true 当appsettings.json被修改时重新加载            
             Configuration = new ConfigurationBuilder()
-               .SetBasePath(contentPath)
-               .Add(new JsonConfigurationSource { Path = Path, Optional = false, ReloadOnChange = true })// 这样的话，可以直接读目录里的json文件，而不是 bin 文件夹下的，所以不用修改复制属性
-               .Build();
-
-
+                .Add(new JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true })
+                .Build();
         }
 
         /// <summary>
@@ -37,9 +28,9 @@ namespace CoreNotes.AutoFac.Common.Helper
             try
             {
                 var val = string.Empty;
-                for (int i = 0; i < sections.Length; i++)
+                foreach (var t in sections)
                 {
-                    val += sections[i] + ":";
+                    val += t + ":";
                 }
 
                 return Configuration[val.TrimEnd(':')];
