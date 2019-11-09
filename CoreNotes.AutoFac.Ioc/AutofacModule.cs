@@ -22,6 +22,9 @@ namespace CoreNotes.AutoFac.Ioc
             builder.RegisterType<UserRoleService>().As<IUserRoleService>().SingleInstance();
             builder.RegisterType<UserRoleRepository>().As<IUserRoleRepository>().SingleInstance();
 
+            builder.RegisterType<PermissionService>().As<IPermissionService>().SingleInstance();
+            builder.RegisterType<PermissionRepository>().As<IPermissionRepository>().SingleInstance();
+
             builder.RegisterType<MenuService>().As<IMenuService>().SingleInstance();
             builder.RegisterType<MenuRepository>().As<IMenuRepository>().SingleInstance();
         }
