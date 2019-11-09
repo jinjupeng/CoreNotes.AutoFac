@@ -89,6 +89,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
 
             if (user != null)
             {
+                user.Status = 1; // 启用
                 user.IsDelete = false;
                 user.CreateTime = DateTime.Now;
                 user.UpdateTime = DateTime.Now;
@@ -113,21 +114,20 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<MessageModel<string>> Put( User user)
+        public MessageModel<string> Put(User user)
         {
             var data = new MessageModel<string>();
             // TODO：保存用户信息时，对应的UserRole表也要同步更新，最好是通过事务一起更新
             if (user != null && user.Id > 0)
             {
-                user.LastErrTime = DateTime.Now;
-                user.UpdateTime = DateTime.Now;
-                var result = await _userService.Update(user).ConfigureAwait(false);
-                data.Success = result;
-                if (data.Success)
+                var result = _userService.SaveUserAndRole(user);
+                if (result)
                 {
-                    data.Response = user?.Id.ObjToString();
-                    data.Msg = "添加成功";
+                    data.Success = true;
+                    data.Response = null;
+                    data.Msg = "修改成功";
                 }
+                
             }
             // TODO：md5加密密码
 

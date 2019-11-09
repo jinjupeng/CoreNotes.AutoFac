@@ -30,10 +30,9 @@ namespace CoreNotes.AutoFac.Service
             return UserRepository.QueryPage(intPageIndex, intPageSize, name, status);
         }
 
-        public Task<int> SaveUserAndRole(User user)
+        public bool SaveUserAndRole(User user)
         {
-            // 使用事务
-            return UserRepository.Add(user);
+            return UserRepository.SaveUserAndRole(user);
         }
     }
 }

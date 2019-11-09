@@ -8,5 +8,7 @@ namespace CoreNotes.AutoFac.IRepository
     public interface IUserRepository: IBaseRepository<User>
     {
         Task<PageModel<User>> QueryPage(int intPageIndex, int intPageSize, string name, int status);
+
+        bool SaveUserAndRole(User user);
     }
 }

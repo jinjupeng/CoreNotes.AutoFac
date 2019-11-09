@@ -14,6 +14,6 @@ namespace CoreNotes.AutoFac.Model.Models
         public DateTime CreateTime { get; set; }
         public int ModifyId { get; set; }
         public string ModifyBy { get; set; }
-        public DateTime ModifyTime { get; set; }
+        public DateTime ModifyTime { get; set; } = DateTime.Now;
     }
 }

@@ -5,7 +5,6 @@ namespace CoreNotes.AutoFac.Repository.sugar
 {
     public class DbContext
     {
-
         /// <summary>
         /// 连接字符串
         /// </summary>
@@ -82,7 +81,6 @@ namespace CoreNotes.AutoFac.Repository.sugar
         #region 根据实体类生成数据库表
         /// <summary>
         /// 功能描述:根据实体类生成数据库表
-        /// 作　　者:Blog.Core
         /// </summary>
         /// <param name="blnBackupTable">是否备份表</param>
         /// <param name="lsTs">指定的实体</param>
@@ -118,25 +116,6 @@ namespace CoreNotes.AutoFac.Repository.sugar
             }
         }
         #endregion
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pars"></param>
-        /// <returns></returns>
-        private string GetParas(SugarParameter[] pars)
-        {
-            string key = "【SQL参数】：";
-            foreach (var param in pars)
-            {
-                key += $"{param.ParameterName}:{param.Value}\n";
-            }
-
-            return key;
-        }
-
-
 
         #region 静态方法
 

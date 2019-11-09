@@ -18,6 +18,6 @@ namespace CoreNotes.AutoFac.IService
         Task<PageModel<User>> QueryPage(int intPageIndex, int intPageSize, string name, int status);
 
         // 保存用户信息到User表，保存用户的角色信息到UserRole表
-        Task<int> SaveUserAndRole(User user);
+        bool SaveUserAndRole(User user);
     }
 }
