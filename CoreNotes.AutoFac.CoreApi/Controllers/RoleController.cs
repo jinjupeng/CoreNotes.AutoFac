@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreNotes.AutoFac.IService;
 using CoreNotes.AutoFac.Model;
@@ -53,6 +54,23 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                 Success = data.DataCount > 0,
                 Response = data
             };
+            return message;
+        }
+        /// <summary>
+        /// 不分页查询
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<MessageModel<List<Role>>> GetAll()
+        {
+            var message = new MessageModel<List<Role>>();
+            var data = await _roleService.Query(a => a.IsDelete == false && a.Enabled == true).ConfigureAwait(false);
+            if (data.Count >= 0)
+            {
+                message.Msg = "查询成功！";
+                message.Success = true;
+                message.Response = data;
+            }
             return message;
         }
 

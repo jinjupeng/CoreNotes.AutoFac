@@ -129,17 +129,25 @@ namespace CoreNotes.AutoFac.Service.Base
         {
             return await BaseDal.Query(whereExpression);
         }
+
         /// <summary>
         /// 功能描述:查询一个列表
         /// </summary>
         /// <param name="whereExpression">条件表达式</param>
-        /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
+        /// <param name="orderByExpression">排序字段，如name asc,age desc</param>
+        /// <param name="isAsc">是否排序</param>
         /// <returns>数据列表</returns>
         public async Task<List<T>> Query(Expression<Func<T, bool>> whereExpression, Expression<Func<T, object>> orderByExpression, bool isAsc = true)
         {
             return await BaseDal.Query(whereExpression, orderByExpression, isAsc);
         }
 
+        /// <summary>
+        /// 功能描述：查询一个列表
+        /// </summary>
+        /// <param name="whereExpression">lambda表达式</param>
+        /// <param name="strOrderByFileds">排序字段</param>
+        /// <returns></returns>
         public async Task<List<T>> Query(Expression<Func<T, bool>> whereExpression, string strOrderByFileds)
         {
             return await BaseDal.Query(whereExpression, strOrderByFileds);
@@ -212,6 +220,14 @@ namespace CoreNotes.AutoFac.Service.Base
             return await BaseDal.Query(strWhere, intPageIndex, intPageSize, strOrderByFileds);
         }
 
+        /// <summary>
+        /// 功能描述：分页排序
+        /// </summary>
+        /// <param name="whereExpression"></param>
+        /// <param name="intPageIndex"></param>
+        /// <param name="intPageSize"></param>
+        /// <param name="strOrderByFileds"></param>
+        /// <returns></returns>
         public async Task<PageModel<T>> QueryPage(Expression<Func<T, bool>> whereExpression,
         int intPageIndex = 1, int intPageSize = 20, string strOrderByFileds = null)
         {

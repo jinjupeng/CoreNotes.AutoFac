@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using CoreNotes.AutoFac.IService;
 using CoreNotes.AutoFac.Model;
@@ -15,10 +16,14 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IUserRoleService _userRoleService;
+        private readonly IRoleService _roleService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IUserRoleService userRoleService, IRoleService roleService)
         {
             _userService = userService;
+            _userRoleService = userRoleService;
+            _roleService = roleService;
         }
 
         /// <summary>
@@ -51,6 +56,18 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         public async Task<MessageModel<PageModel<User>>> GetList(int pageIndex, int pageSize, string name, int status)
         {
             var data = await _userService.QueryPage(pageIndex, pageSize, name, status).ConfigureAwait(false);
+
+            // UserId -> UserRole表 --> RoleId --> Role表 --> RoleName
+            var userRoles = await _userRoleService.Query(a => a.IsDelete == false).ConfigureAwait(false);
+            var allRoles = await _roleService.Query(a => a.IsDelete == false).ConfigureAwait(false);
+            var userInfos = data.Data;
+            foreach (var userInfo in userInfos)
+            {
+                userInfo.RoleId = userRoles.FirstOrDefault(a => a.UserId == userInfo.Id) != null ? userRoles.First(a => a.UserId == userInfo.Id).RoleId : 0;
+                userInfo.RoleName = allRoles.FirstOrDefault(a => a.Id == userInfo.RoleId) != null ? allRoles.First(a => a.Id == userInfo.RoleId).RoleName : null;
+            }
+
+            data.Data = userInfos;
             var message = new MessageModel<PageModel<User>>
             {
                 Msg = "获取成功！",
@@ -99,6 +116,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         public async Task<MessageModel<string>> Put( User user)
         {
             var data = new MessageModel<string>();
+            // TODO：保存用户信息时，对应的UserRole表也要同步更新，最好是通过事务一起更新
             if (user != null && user.Id > 0)
             {
                 user.LastErrTime = DateTime.Now;
