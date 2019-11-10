@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SqlSugar;
 
 namespace CoreNotes.AutoFac.Model.Models
@@ -24,5 +25,11 @@ namespace CoreNotes.AutoFac.Model.Models
 		public string ModifyBy { get; set; }
 		public DateTime ModifyTime { get; set; }
 		public bool IsDelete { get; set; }
+
+		/// <summary>
+		/// 用于向前端展示子结构数据
+		/// </summary>
+		[SugarColumn(IsIgnore = true)]
+		public List<Permission> Children { get; set; }
 	}
 }

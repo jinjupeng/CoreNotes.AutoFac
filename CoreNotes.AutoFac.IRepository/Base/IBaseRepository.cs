@@ -25,6 +25,7 @@ namespace CoreNotes.AutoFac.IRepository.Base
         Task<bool> DeleteByIds(object[] ids);
 
         Task<bool> Update(T model);
+        Task<bool> Update(List<T> list);
         Task<bool> Update(T entity, string strWhere);
 
         Task<bool> Update(T entity, List<string> lstColumns = null, List<string> lstIgnoreColumns = null, string strWhere = "");

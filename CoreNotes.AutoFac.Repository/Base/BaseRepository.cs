@@ -108,6 +108,11 @@ namespace CoreNotes.AutoFac.Repository.Base
             return await Db.Updateable(entity).ExecuteCommandHasChangeAsync();
         }
 
+        public async Task<bool> Update(List<T> list)
+        {
+            return await Db.Updateable(list).ExecuteCommandHasChangeAsync();
+        }
+
         public async Task<bool> Update(T entity, string strWhere)
         {
             //return await Task.Run(() => _db.Updateable(entity).Where(strWhere).ExecuteCommand() > 0);

@@ -38,7 +38,6 @@ namespace CoreNotes.AutoFac.Service
                     var childs = func(item.Id);
                     t.Add(new MenuDto()
                     {
-                        // Item = item,
                         Id = item.Id,
                         Pid = item.Pid,
                         Label = item.Name,
@@ -50,6 +49,61 @@ namespace CoreNotes.AutoFac.Service
                 return t;
             });
             return func(0);
+        }
+
+        public List<Permission> GetMenuTreeList()
+        {
+            List<Permission> list = _menuRepository.GetMenuList();
+
+            Func<int, List<Permission>> func = null;
+            func = m => {
+                List<Permission> t = new List<Permission>();
+                foreach (var item in list.Where(h => h.Pid == m && h.IsDelete == false))
+                {
+                    var childs = func(item.Id);
+                    t.Add(new Permission()
+                    {
+                        Id = item.Id,
+                        Pid = item.Pid,
+                        Name = item.Name,
+                        Path = item.Path,
+                        Enabled = item.Enabled,
+                        Mid = item.Mid,
+                        IsHide = item.IsHide,
+                        Icon = item.Icon,
+                        IsButton = item.IsButton,
+                        OrderSort = item.OrderSort,
+                        CreateTime = item.CreateTime,
+                        Children = childs
+                    });
+                }
+                return t;
+            };
+            return func(0);
+        }
+
+        /// <summary>
+        /// 删除菜单，注意：如果删除的父级菜单，则子级菜单都会被删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool DeleteMenu(int id)
+        {
+            var result1 = BaseDal.Query(a => a.Id == id).Result.FirstOrDefault();
+            if (result1 == null)
+            {
+                return false;
+            }
+            var result2 = BaseDal.Query(a => a.Pid == id).Result;
+            var list = new List<Permission>();
+            result2.Add(result1);
+            foreach (var value in result2)
+            {
+                value.IsDelete = true;
+                list.Add(value);
+            }
+            
+            return BaseDal.Update(list).Result;
         }
     }
 }

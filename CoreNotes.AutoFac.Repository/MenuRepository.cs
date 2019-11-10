@@ -11,5 +11,6 @@ namespace CoreNotes.AutoFac.Repository
         {
             return Db.Queryable<Permission>().ToList();
         }
+
     }
 }

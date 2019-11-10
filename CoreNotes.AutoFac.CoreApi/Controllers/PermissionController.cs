@@ -110,7 +110,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
 		}
 
 		/// <summary>
-		/// 删除单条数据
+		/// 删除单条数据，注意：如果删除的是父级菜单，则子级菜单都会被删除
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
@@ -132,10 +132,6 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
 
 			return data;
 		}
-
-		// TODO：获取路由树
-
-		// TODO：获取菜单树
 
 		// TODO：菜单权限分配
 	}
