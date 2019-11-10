@@ -117,7 +117,6 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         public MessageModel<string> Put(User user)
         {
             var data = new MessageModel<string>();
-            // TODO：保存用户信息时，对应的UserRole表也要同步更新，最好是通过事务一起更新
             if (user != null && user.Id > 0)
             {
                 var result = _userService.SaveUserAndRole(user);

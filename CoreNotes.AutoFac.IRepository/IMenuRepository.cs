@@ -1,11 +1,11 @@
-﻿using CoreNotes.AutoFac.Model;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CoreNotes.AutoFac.IRepository.Base;
+using CoreNotes.AutoFac.Model.Models;
 
 namespace CoreNotes.AutoFac.IRepository
 {
-    public interface IMenuRepository
+    public interface IMenuRepository: IBaseRepository<Permission>
     {
-        List<Hashtable> GetMenuList();
+        List<Permission> GetMenuList();
     }
 }

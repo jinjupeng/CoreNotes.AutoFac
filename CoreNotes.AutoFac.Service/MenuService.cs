@@ -1,15 +1,15 @@
 ﻿using CoreNotes.AutoFac.IRepository;
 using CoreNotes.AutoFac.IService;
-using CoreNotes.AutoFac.Model;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using CoreNotes.AutoFac.Model.DTO;
 using CoreNotes.AutoFac.Model.Models;
+using CoreNotes.AutoFac.Service.Base;
 
 namespace CoreNotes.AutoFac.Service
 {
-    public class MenuService : IMenuService
+    public class MenuService : BaseService<Permission>, IMenuService
     {
         private readonly IMenuRepository _menuRepository;
         /// <summary>
@@ -25,28 +25,31 @@ namespace CoreNotes.AutoFac.Service
         /// <summary>
         /// Func委托实现生成菜单树
         /// </summary>
-        /// <param name="pid"></param>
         /// <returns></returns>
-        public List<MenuEntity> GetMenuTree()
+        public List<MenuDto> GetMenuTree()
         {
-            // 模拟从数据库获取菜单List
-            List<Hashtable> list = _menuRepository.GetMenuList();
+            List<Permission> list = _menuRepository.GetMenuList();
 
-            Func<int, List<MenuEntity>> func = null;
-            func = new Func<int, List<MenuEntity>>(m => {
-                List<MenuEntity> t = new List<MenuEntity>();
-                foreach (var item in list.Where(h => h["pid"].ToString() == m.ToString()))
+            Func<int, List<MenuDto>> func = null;
+            func = new Func<int, List<MenuDto>>(m => {
+                List<MenuDto> t = new List<MenuDto>();
+                foreach (var item in list.Where(h => h.Pid == m && h.IsDelete == false))
                 {
-                    var childs = func(Convert.ToInt32(item["id"]));
-                    t.Add(new MenuEntity()
+                    var childs = func(item.Id);
+                    t.Add(new MenuDto()
                     {
-                        item = item,
-                        children = childs
+                        // Item = item,
+                        Id = item.Id,
+                        Pid = item.Pid,
+                        Label = item.Name,
+                        IsBtn = item.IsButton,
+                        Order = item.OrderSort,
+                        Children = childs
                     });
                 }
                 return t;
             });
-            return func(-1);
+            return func(0);
         }
     }
 }

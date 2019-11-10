@@ -1,11 +1,12 @@
-﻿using CoreNotes.AutoFac.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CoreNotes.AutoFac.IService.Base;
+using CoreNotes.AutoFac.Model.DTO;
 using CoreNotes.AutoFac.Model.Models;
 
 namespace CoreNotes.AutoFac.IService
 {
-    public interface IMenuService
+    public interface IMenuService: IBaseService<Permission>
     {
-        List<MenuEntity> GetMenuTree();
+        List<MenuDto> GetMenuTree();
     }
 }

@@ -4,7 +4,6 @@ using CoreNotes.AutoFac.IRepository;
 using CoreNotes.AutoFac.Model;
 using CoreNotes.AutoFac.Model.Models;
 using CoreNotes.AutoFac.Repository.Base;
-using CoreNotes.AutoFac.Repository.sugar;
 using SqlSugar;
 
 namespace CoreNotes.AutoFac.Repository
