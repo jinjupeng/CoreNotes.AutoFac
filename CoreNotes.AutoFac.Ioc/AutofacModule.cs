@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using CoreNotes.AutoFac.IRepository;
 using CoreNotes.AutoFac.IService;
+using CoreNotes.AutoFac.IService.Base;
 using CoreNotes.AutoFac.Repository;
 using CoreNotes.AutoFac.Service;
 
@@ -24,6 +25,9 @@ namespace CoreNotes.AutoFac.Ioc
 
             builder.RegisterType<PermissionService>().As<IPermissionService>().SingleInstance();
             builder.RegisterType<PermissionRepository>().As<IPermissionRepository>().SingleInstance();
+
+            builder.RegisterType<ModuleService>().As<IModuleService>().SingleInstance();
+            builder.RegisterType<ModuleRepository>().As<IModuleRepository>().SingleInstance();
 
             builder.RegisterType<MenuService>().As<IMenuService>().SingleInstance();
             builder.RegisterType<MenuRepository>().As<IMenuRepository>().SingleInstance();
