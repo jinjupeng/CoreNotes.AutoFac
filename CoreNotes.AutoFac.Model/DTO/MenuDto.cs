@@ -9,6 +9,7 @@ namespace CoreNotes.AutoFac.Model.DTO
     {
         public int Id { get; set; } // public int Value { get; set; }
         public int Pid { get; set; } // 父节点
+        public string Path { get; set; }
         public string Label { get; set; }
         public int Order { get; set; }
         public bool IsBtn { get; set; }

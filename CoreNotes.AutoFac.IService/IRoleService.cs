@@ -7,6 +7,6 @@ namespace CoreNotes.AutoFac.IService
 {
     public interface IRoleService: IBaseService<Role>
     {
-        Task<PageModel<Role>> QueryPage(int pageIndex, int pageSize, string name);
+        Task<PageModel<Role>> QueryPage(int pageIndex, int pageSize, bool enabled, string name);
     }
 }

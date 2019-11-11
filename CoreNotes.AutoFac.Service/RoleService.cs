@@ -15,9 +15,9 @@ namespace CoreNotes.AutoFac.Service
         {
             RoleRepository = roleRepository;
         }
-        public Task<PageModel<Role>> QueryPage(int pageIndex, int pageSize, string name)
+        public Task<PageModel<Role>> QueryPage(int pageIndex, int pageSize, bool enabled, string name)
         {
-            return RoleRepository.QueryPage(pageIndex, pageSize, name);
+            return RoleRepository.QueryPage(pageIndex, pageSize, enabled, name);
         }
     }
 }

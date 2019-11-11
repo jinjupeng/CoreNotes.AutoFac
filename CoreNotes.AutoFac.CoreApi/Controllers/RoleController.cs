@@ -45,9 +45,9 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<MessageModel<PageModel<Role>>> GetList(int pageIndex, int pageSize, string name)
+        public async Task<MessageModel<PageModel<Role>>> GetList(int pageIndex, int pageSize, string name, bool enabled = false)
         {
-            var data = await _roleService.QueryPage(pageIndex, pageSize, name).ConfigureAwait(false);
+            var data = await _roleService.QueryPage(pageIndex, pageSize, enabled, name).ConfigureAwait(false);
             var message = new MessageModel<PageModel<Role>>
             {
                 Msg = "获取成功！",

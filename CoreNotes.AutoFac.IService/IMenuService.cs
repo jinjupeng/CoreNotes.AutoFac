@@ -10,6 +10,7 @@ namespace CoreNotes.AutoFac.IService
         List<MenuDto> GetMenuTree();
 
         List<Permission> GetMenuTreeList();
+        List<MenuDto> GetSidebarMenuTree();
 
         bool DeleteMenu(int id);
     }

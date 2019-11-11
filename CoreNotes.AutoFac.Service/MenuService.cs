@@ -82,6 +82,32 @@ namespace CoreNotes.AutoFac.Service
             return func(0);
         }
 
+        public List<MenuDto> GetSidebarMenuTree()
+        {
+            List<Permission> list = _menuRepository.GetMenuList();
+
+            Func<int, List<MenuDto>> func = null;
+            func = new Func<int, List<MenuDto>>(m => {
+                List<MenuDto> t = new List<MenuDto>();
+                foreach (var item in list.Where(h => h.Pid == m && h.IsDelete == false && h.IsButton == false))
+                {
+                    var childs = func(item.Id);
+                    t.Add(new MenuDto()
+                    {
+                        Id = item.Id,
+                        Pid = item.Pid,
+                        Path = item.Path,
+                        Label = item.Name,
+                        IsBtn = item.IsButton,
+                        Order = item.OrderSort,
+                        Children = childs
+                    });
+                }
+                return t;
+            });
+            return func(0);
+        }
+
         /// <summary>
         /// 删除菜单，注意：如果删除的父级菜单，则子级菜单都会被删除
         /// </summary>

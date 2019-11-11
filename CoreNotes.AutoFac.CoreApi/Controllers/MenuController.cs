@@ -55,6 +55,25 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             return message;
         }
 
+        /// <summary>
+        /// 获取侧边菜单树（不包含按钮）
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public MessageModel<List<MenuDto>> GetSidebarMenuTree()
+        {
+            MessageModel<List<MenuDto>> message = new MessageModel<List<MenuDto>>();
+            var result = _menuService.GetSidebarMenuTree();
+            if (result != null)
+            {
+                message.Msg = "查询成功！";
+                message.Response = result;
+                message.Success = true;
+            }
+
+            return message;
+        }
+
         [HttpDelete]
         public MessageModel<string> Delete(int id)
         {

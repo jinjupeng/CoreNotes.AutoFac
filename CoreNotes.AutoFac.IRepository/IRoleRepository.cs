@@ -7,6 +7,6 @@ namespace CoreNotes.AutoFac.IRepository
 {
     public interface IRoleRepository: IBaseRepository<Role>
     {
-        Task<PageModel<Role>> QueryPage(int pageIndex, int pageSize, string name);
+        Task<PageModel<Role>> QueryPage(int pageIndex, int pageSize, bool enabled, string name);
     }
 }

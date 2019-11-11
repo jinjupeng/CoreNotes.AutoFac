@@ -88,6 +88,15 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
 
             if (module != null)
             {
+                var arr = module.LinkUrl.Split("/");
+                if (arr.Length != 3)
+                {
+                    data.Msg = "参数错误";
+                    return data;
+                }
+
+                module.Controller = arr[1];
+                module.Action = arr[2];
                 module.IsDelete = false;
                 module.CreateTime = DateTime.Now;
                 module.ModifyTime = DateTime.Now;
@@ -115,6 +124,15 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             var data = new MessageModel<string>();
             if (module != null && module.Id > 0)
             {
+                var arr = module.LinkUrl.Split("/");
+                if (arr.Length != 3)
+                {
+                    data.Msg = "参数错误";
+                    return data;
+                }
+
+                module.Controller = arr[1];
+                module.Action = arr[2];
                 module.ModifyTime = DateTime.Now;
                 var result = await _moduleService.Update(module).ConfigureAwait(false);
                 data.Success = result;

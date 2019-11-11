@@ -15,13 +15,15 @@ namespace CoreNotes.AutoFac.Repository
         /// </summary>
         /// <param name="intPageIndex"></param>
         /// <param name="intPageSize"></param>
+        /// <param name="enabled"></param>
         /// <param name="name">角色名</param>
         /// <returns></returns>
-        public async Task<PageModel<Role>> QueryPage(int intPageIndex, int intPageSize, string name)
+        public async Task<PageModel<Role>> QueryPage(int intPageIndex, int intPageSize, bool enabled, string name)
         {
             RefAsync<int> totalCount = 0;
             var list = await Task.Run(() => Db.Queryable<Role>()
                 .Where(a => a.IsDelete == false)
+                .WhereIF(enabled, a => a.Enabled == enabled)
                 .WhereIF(!string.IsNullOrWhiteSpace(name), a => a.RoleName == name)
                 .ToPageListAsync(intPageIndex, intPageSize, totalCount)
             );
