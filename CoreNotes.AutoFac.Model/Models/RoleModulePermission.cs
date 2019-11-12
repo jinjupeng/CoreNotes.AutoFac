@@ -9,7 +9,7 @@ namespace CoreNotes.AutoFac.Model.Models
         public int Id { get; set; }
         public bool IsDelete { get; set; }
         public int RoleId { get; set; }
-        public int ModuleId { get; set; }
+        public int? ModuleId { get; set; }
         public int PermissionId { get; set; }
         public int CreateId { get; set; }
         public string CreateBy { get; set; }
