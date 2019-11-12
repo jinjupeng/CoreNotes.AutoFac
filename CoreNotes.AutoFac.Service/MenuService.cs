@@ -109,12 +109,13 @@ namespace CoreNotes.AutoFac.Service
         }
 
         /// <summary>
-        /// 删除菜单，注意：如果删除的父级菜单，则子级菜单都会被删除
+        /// 删除菜单，注意：如果删除的父级菜单，则子级菜单都会被删除，如果删除子级菜单，则父级不删除
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public bool DeleteMenu(int id)
         {
+            // TODO：菜单删除逻辑有问题
             var result1 = BaseDal.Query(a => a.Id == id).Result.FirstOrDefault();
             if (result1 == null)
             {

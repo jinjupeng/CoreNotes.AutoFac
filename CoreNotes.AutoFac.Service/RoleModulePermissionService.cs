@@ -4,7 +4,8 @@ using CoreNotes.AutoFac.Service.Base;
 
 namespace CoreNotes.AutoFac.Service
 {
-    public class ModulePermissionService: BaseService<ModulePermission>, IModulePermissionService
+    public class RoleModulePermissionService : BaseService<RoleModulePermission>, IRoleModulePermissionService
     {
+        
     }
 }

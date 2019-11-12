@@ -52,6 +52,16 @@ namespace CoreNotes.AutoFac.Service.Base
         }
 
         /// <summary>
+        /// 写入List集合
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public async Task<int> Add(List<T> list)
+        {
+            return await BaseDal.Add(list);
+        }
+
+        /// <summary>
         /// 更新实体数据
         /// </summary>
         /// <param name="entity">实体类</param>

@@ -17,7 +17,7 @@ namespace CoreNotes.AutoFac.IRepository.Base
         Task<List<T>> QueryByIDs(object[] lstIds);
 
         Task<int> Add(T model);
-
+        Task<int> Add(List<T> list);
         Task<bool> DeleteById(object id);
 
         Task<bool> Delete(T model);
