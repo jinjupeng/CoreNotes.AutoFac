@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreNotes.AutoFac.IService;
 using CoreNotes.AutoFac.Model;
 using CoreNotes.AutoFac.Model.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
@@ -24,8 +25,6 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             _roleModulePermissionService = roleModulePermissionService;
             _permissionService = permissionService;
         }
-
-        // TODO：保存角色分配的权限
 
         /// <summary>
         /// 保存角色分配的权限
@@ -79,12 +78,30 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             return data;
         }
 
-        // TODO：根据角色id获取已分配的菜单和按钮
-        /*
-        public async Task<MessageModel<RoleModulePermission>> GetList(int roleId)
+        /// <summary>
+        /// 通过角色id获取菜单和按钮【无权限】
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<MessageModel<List<int>>> GetPermissionIdByRoleId(int roleId = 0)
         {
-            // 也必须转成菜单树
+            var data = new MessageModel<List<int>>();
+
+            var roleModulePermissions = await _roleModulePermissionService.Query(d => d.IsDelete == false && d.RoleId == roleId).ConfigureAwait(false);
+            var permissionTrees = (from child in roleModulePermissions
+                orderby child.Id
+                select child.PermissionId.ObjToInt()).ToList();
+
+            data.Success = true;
+            if (data.Success)
+            {
+                data.Response = permissionTrees;
+                data.Msg = "获取成功";
+            }
+
+            return data;
         }
-        */
     }
 }
