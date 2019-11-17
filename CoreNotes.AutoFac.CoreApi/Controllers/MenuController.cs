@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using CoreNotes.AutoFac.Model;
 using CoreNotes.AutoFac.Model.DTO;
 using CoreNotes.AutoFac.Model.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreNotes.AutoFac.CoreApi.Controllers
 {
-    [ApiController]
+    [Authorize("Permission")]
     [Route("[controller]/[action]")]
     public class MenuController : ControllerBase
     {

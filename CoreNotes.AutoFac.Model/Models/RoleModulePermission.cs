@@ -17,5 +17,15 @@ namespace CoreNotes.AutoFac.Model.Models
         public int ModifyId { get; set; }
         public string ModifyBy { get; set; }
         public DateTime ModifyTime { get; set; }
+
+        // 请注意，下边三个实体参数，只是做传参作用，所以忽略下，不然会认为缺少字段
+        [SugarColumn(IsIgnore = true)]
+        public virtual Role Role { get; set; }
+
+        [SugarColumn(IsIgnore = true)]
+        public virtual Module Module { get; set; }
+
+        [SugarColumn(IsIgnore = true)]
+        public virtual Permission Permission { get; set; }
     }
 }

@@ -19,5 +19,7 @@ namespace CoreNotes.AutoFac.IService
 
         // 保存用户信息到User表，保存用户的角色信息到UserRole表
         bool SaveUserAndRole(User user);
+
+        Task<string> GetUserRoleNameStr(string loginName, string loginPwd);
     }
 }

@@ -14,6 +14,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
     /// <summary>
     /// 权限分配接口
     /// </summary>
+    [Authorize("Permission")]
     [Route("[controller]/[action]")]
     public class RoleModulePermissionController : ControllerBase
     {

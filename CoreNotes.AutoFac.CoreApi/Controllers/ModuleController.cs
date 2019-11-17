@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CoreNotes.AutoFac.IService.Base;
 using CoreNotes.AutoFac.Model;
 using CoreNotes.AutoFac.Model.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 
@@ -12,6 +13,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
     /// <summary>
     /// 接口模块
     /// </summary>
+    [Authorize("Permission")]
     [Route("[controller]/[action]")]
     public class ModuleController : ControllerBase
     {
