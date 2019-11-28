@@ -38,6 +38,7 @@ namespace CoreNotes.AutoFac.CoreApi
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             */
+            services.AddHttpContextAccessor();
 
             #region 官方认证
 

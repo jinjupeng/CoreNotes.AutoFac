@@ -47,7 +47,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
                 
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, username),
-                    new Claim(ClaimTypes.Expiration, DateTime.Now.AddSeconds(_requirement.Expiration.TotalSeconds).ToString())
+                    new Claim(ClaimTypes.Expiration, DateTime.Now.AddMinutes(_requirement.Expiration.TotalMinutes).ToString())
                 };
                 claims.AddRange(userRoles.Split(',').Select(s => new Claim(ClaimTypes.Role, s)));
 
