@@ -52,11 +52,15 @@
   - [ ] AutoMapper
   - [X] Swagger UI
   - [x] REST API
+  - [ ] Redis/MemoryCache缓存
+  - [ ] 定时任务Quartz.net
   - [ ] 单元测试
-  - [ ] 权限配置
+  - [x] 基于角色权限配置
   - [x] 新增Vue前端
-  - [ ] 配置Dockerfile
+  - [ ] 性能监测MiniProfiler
+  - [ ] 部署到Docker中
   - [ ] 部署到Linux上
+  - [ ] 替换ORM框架-Drapper
 
 ## 链接
 

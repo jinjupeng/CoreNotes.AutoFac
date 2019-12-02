@@ -62,7 +62,7 @@ namespace CoreNotes.AutoFac.CoreApi
                 audienceConfig["Issuer"],//发行人
                 audienceConfig["Audience"],//订阅人
                 signingCredentials,//签名凭据
-                expiration: TimeSpan.FromSeconds(60 * 2)//接口的过期时间，注意这里没有了缓冲时间，你也可以自定义，在上边的TokenValidationParameters的 ClockSkew
+                expiration: TimeSpan.FromSeconds(60 * 60)//接口的过期时间，注意这里没有了缓冲时间，你也可以自定义，在上边的TokenValidationParameters的 ClockSkew
                 );
 
             // 令牌验证参数

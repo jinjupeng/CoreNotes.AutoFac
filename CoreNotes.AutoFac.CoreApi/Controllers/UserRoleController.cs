@@ -9,7 +9,7 @@ using SqlSugar;
 
 namespace CoreNotes.AutoFac.CoreApi.Controllers
 {
-    [Authorize("Permission")]
+    //[Authorize("Permission")]
     [Route("[controller]/[action]")]
     public class UserRoleController : ControllerBase
     {

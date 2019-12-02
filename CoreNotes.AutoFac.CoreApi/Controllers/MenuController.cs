@@ -18,6 +18,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             _menuService = menuService;
         }
 
+        // TODO：应该根据当前登录用户的角色来显示不同的菜单树
         /// <summary>
         /// 获取菜单树
         /// </summary>
@@ -37,10 +38,12 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             return message;
         }
 
+        // TODO：应该根据当前登录用户的角色来显示不同的菜单树
         /// <summary>
         /// 获取菜单树列表
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         public MessageModel<List<Permission>> GetMenuTreeList()
         {
@@ -56,10 +59,12 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             return message;
         }
 
+        // TODO：应该根据当前登录用户的角色来显示不同的菜单树
         /// <summary>
         /// 获取侧边菜单树（不包含按钮）
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         public MessageModel<List<MenuDto>> GetSidebarMenuTree()
         {

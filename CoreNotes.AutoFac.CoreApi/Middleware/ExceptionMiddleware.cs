@@ -74,7 +74,6 @@ namespace CoreNotes.AutoFac.CoreApi.Middleware
                 error = "抱歉，出错了";
             }
 
-
             await context.Response.WriteAsync(error);
         }
     }

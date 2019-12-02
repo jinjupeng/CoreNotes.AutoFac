@@ -17,15 +17,20 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
     [Route("[controller]/[action]")]
     public class LoginController : ControllerBase
     {
-        // 依赖注入
         private readonly IUserService _userService;
         private readonly PermissionRequirement _requirement;
+        /// <summary>
+        /// 依赖注入
+        /// </summary>
+        /// <param name="userService"></param>
+        /// <param name="requirement"></param>
         public LoginController(IUserService userService, PermissionRequirement requirement)
         {
             _userService = userService;
             _requirement = requirement;
         }
 
+        [HttpPost]
         public async Task<object> GetJwtToken(string username = "", string password = "")
         {
             string jwtStr = string.Empty;
@@ -68,7 +73,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
         }
 
         [HttpGet]
-        public MessageModel<string> LogOut()
+        public MessageModel<string> LoginOut()
         {
             var data = new MessageModel<string>
             {

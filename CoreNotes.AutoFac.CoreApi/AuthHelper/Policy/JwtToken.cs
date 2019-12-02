@@ -35,7 +35,7 @@ namespace CoreNotes.AutoFac.CoreApi.AuthHelper.Policy
             {
                 success = true,
                 token = encodedJwt,
-                expires_in = permissionRequirement.Expiration.TotalSeconds,
+                expires_in = permissionRequirement.Expiration.TotalMinutes,
                 token_type = "Bearer"
             };
             return responseJson;

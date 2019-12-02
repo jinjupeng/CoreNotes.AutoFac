@@ -13,7 +13,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
     /// <summary>
     /// 接口模块
     /// </summary>
-    [Authorize("Permission")]
+    //[Authorize("Permission")]
     [Route("[controller]/[action]")]
     public class ModuleController : ControllerBase
     {
