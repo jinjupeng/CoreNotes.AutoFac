@@ -62,6 +62,33 @@
   - [ ] 部署到Linux上
   - [ ] 替换ORM框架-Drapper
 
+## Docker部署
+
+### Dockerfile文件见项目文件夹
+
+### 发布项目
+
+将编译并打包好文件上传到Linux服务器上的某个文件夹中
+
+### 构建镜像
+
+```bash
+cd xxx/
+docker build -t autofac . # 镜像名autofac
+```
+
+### 启动容器
+
+```bash
+docker run --name=autofaccontain -d -p 80:5000 autofacimage
+# --name：指定容器名称
+# -p：指定主机端口映射容器端口，主机端口80，容器端口5000
+# -d：指定容器后台运行
+docker ps -a # 查看启动状态，STATUS为UP则成功
+```
+
+
+
 ## 链接
 
 [.NET Core3.0的官方教程](https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-3.0)

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -12,15 +13,15 @@ namespace CoreNotes.AutoFac.CoreApi.Middleware
     /// </summary>
     public class ExceptionMiddleware
     {
-        private readonly RequestDelegate next;
-        private readonly ILogger logger;
-        private IHostingEnvironment environment;
+        private readonly RequestDelegate _next;
+        private readonly ILogger _logger;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostingEnvironment environment)
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IWebHostEnvironment webHostEnvironment)
         {
-            this.next = next;
-            this.logger = logger;
-            this.environment = environment;
+            this._next = next;
+            this._logger = logger;
+            this._webHostEnvironment = webHostEnvironment;
         }
 
         /// <summary>
@@ -32,12 +33,12 @@ namespace CoreNotes.AutoFac.CoreApi.Middleware
         {
             try
             {
-                await next.Invoke(context);
+                await _next.Invoke(context).ConfigureAwait(false);
                 var features = context.Features;
             }
             catch (Exception e)
             {
-                await HandleException(context, e);
+                await HandleException(context, e).ConfigureAwait(false);
             }
         }
         /// <summary>
@@ -54,7 +55,7 @@ namespace CoreNotes.AutoFac.CoreApi.Middleware
 
             void ReadException(Exception ex)
             {
-                error += string.Format("{0} | {1} | {2}", ex.Message, ex.StackTrace, ex.InnerException);
+                error += $"{ex.Message} | {ex.StackTrace} | {ex.InnerException}";
                 if (ex.InnerException != null)
                 {
                     ReadException(ex.InnerException);
@@ -63,7 +64,7 @@ namespace CoreNotes.AutoFac.CoreApi.Middleware
 
             ReadException(e);
             // 如果是开发环境模式，输出详细的错误信息
-            if (environment.IsDevelopment())
+            if (_webHostEnvironment.IsDevelopment())
             {
                 var json = new { message = e.Message, detail = error };
                 error = JsonConvert.SerializeObject(json);
@@ -74,7 +75,7 @@ namespace CoreNotes.AutoFac.CoreApi.Middleware
                 error = "抱歉，出错了";
             }
 
-            await context.Response.WriteAsync(error);
+            await context.Response.WriteAsync(error).ConfigureAwait(false);
         }
     }
 }

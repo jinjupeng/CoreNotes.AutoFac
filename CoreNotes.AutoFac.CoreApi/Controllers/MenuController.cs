@@ -18,9 +18,9 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             _menuService = menuService;
         }
 
-        // TODO：应该根据当前登录用户的角色来显示不同的菜单树
+        // TODO：应该根据当前登录用户名来显示不同的菜单树
         /// <summary>
-        /// 获取菜单树
+        /// 获取菜单树，菜单列表时使用
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -38,9 +38,9 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             return message;
         }
 
-        // TODO：应该根据当前登录用户的角色来显示不同的菜单树
+        // TODO：应该根据当前登录用户用户名来显示不同的菜单树
         /// <summary>
-        /// 获取菜单树列表
+        /// 获取菜单树列表，角色分配权限时使用
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
@@ -59,7 +59,7 @@ namespace CoreNotes.AutoFac.CoreApi.Controllers
             return message;
         }
 
-        // TODO：应该根据当前登录用户的角色来显示不同的菜单树
+        // TODO：应该根据当前登录用户用户名来显示不同的菜单树
         /// <summary>
         /// 获取侧边菜单树（不包含按钮）
         /// </summary>
