@@ -9,7 +9,7 @@
 
 ### 开发环境
 
-+ ASP.NET Core 3.0
++ ASP.NET Core 3.x
 + Visual Studio 2019
 
 ### 特性（可选）
@@ -53,7 +53,9 @@
   - [X] Swagger UI
   - [x] REST API
   - [ ] Redis/MemoryCache缓存
-  - [ ] 定时任务Quartz.net
+  - [ ] 定时任务Hangfire/Quartz.net
+  - [ ] 文件上传（包括分片上传、断点续传等）
+  - [ ] MailKit收发邮件
   - [ ] 单元测试
   - [x] 基于角色权限配置
   - [x] 新增Vue前端

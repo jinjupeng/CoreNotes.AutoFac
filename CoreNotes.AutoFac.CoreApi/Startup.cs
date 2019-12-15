@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using CoreNotes.AutoFac.Common.Cache;
 using CoreNotes.AutoFac.CoreApi.AuthHelper.Policy;
 using CoreNotes.AutoFac.CoreApi.Filters;
 using CoreNotes.AutoFac.CoreApi.Middleware;
@@ -17,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Caching.Redis;
 
 namespace CoreNotes.AutoFac.CoreApi
 {
@@ -38,6 +40,30 @@ namespace CoreNotes.AutoFac.CoreApi
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             */
+
+            #region MemoryCache缓存
+
+            services.AddMemoryCache(options =>
+            {
+                // SizeLimit缓存是没有大小的，此值设置缓存的份数
+                // 注意：netcore中的缓存是没有单位的，缓存项和缓存的相对关系
+                options.SizeLimit = 2;
+                // 缓存满的时候压缩20%的优先级较低的数据
+                options.CompactionPercentage = 0.2;
+                // 两秒钟查找一次过期项
+                options.ExpirationScanFrequency = TimeSpan.FromSeconds(2);
+            });
+            // 内置缓存注入
+            services.AddTransient<MemoryCacheService>();
+
+            // Redis缓存注入
+            services.AddSingleton(new RedisCacheService(new RedisCacheOptions()
+            {
+                InstanceName = Configuration.GetSection("Redis:InstanceName").Value,
+                Configuration = Configuration.GetSection("Redis:Connection").Value
+            }));
+
+            #endregion
             services.AddHttpContextAccessor();
 
             #region 官方认证
