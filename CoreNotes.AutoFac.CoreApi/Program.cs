@@ -11,6 +11,7 @@ namespace CoreNotes.AutoFac.CoreApi
     {
         public static void Main(string[] args)
         {
+            // ConfigurationBuilder是配置文件的核心
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -10,13 +11,13 @@ namespace CoreNotes.AutoFac.CoreApi.Filters
     public class CustomExceptionFilter : Attribute, IExceptionFilter
     {
         // 记录异常日志
-        private readonly ILogger logger = null;
+        private readonly ILogger _logger = null;
         // 获取程序运行环境变量
-        private readonly IHostingEnvironment environment = null;
-        public CustomExceptionFilter(ILogger<CustomExceptionFilter> logger, IHostingEnvironment environment)
+        private readonly IWebHostEnvironment _webHostEnvironment = null;
+        public CustomExceptionFilter(ILogger<CustomExceptionFilter> logger, IWebHostEnvironment webHostEnvironment)
         {
-            this.logger = logger;
-            this.environment = environment;
+            this._logger = logger;
+            this._webHostEnvironment = webHostEnvironment;
         }
 
         public void OnException(ExceptionContext context)
@@ -26,7 +27,7 @@ namespace CoreNotes.AutoFac.CoreApi.Filters
 
             void ReadException(Exception ex)
             {
-                error += string.Format("{0} | {1} | {2}", ex.Message, ex.StackTrace, ex.InnerException);
+                error += $"{ex.Message} | {ex.StackTrace} | {ex.InnerException}";
                 if (ex.InnerException != null)
                 {
                     ReadException(ex.InnerException);
@@ -34,7 +35,7 @@ namespace CoreNotes.AutoFac.CoreApi.Filters
             }
 
             ReadException(context.Exception);
-            logger.LogError(error);
+            _logger.LogError(error);
 
             ContentResult result = new ContentResult
             {
@@ -42,7 +43,7 @@ namespace CoreNotes.AutoFac.CoreApi.Filters
                 ContentType = "text/json;charset=utf-8;"
             };
 
-            if (environment.IsDevelopment())
+            if (_webHostEnvironment.IsDevelopment())
             {
                 var json = new { message = exception.Message, detail = error };
                 result.Content = JsonConvert.SerializeObject(json);
