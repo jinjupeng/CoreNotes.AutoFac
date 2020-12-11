@@ -62,7 +62,7 @@
   - [ ] 性能监测MiniProfiler
   - [ ] 部署到Docker中
   - [ ] 部署到Linux上
-  - [ ] 替换ORM框架-Drapper
+  - [ ] 替换ORM框架-Dapper
 
 ## Docker部署
 
